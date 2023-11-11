@@ -3,9 +3,9 @@ package edu.javaCourse.studentOrder.domian;
 import java.time.LocalDate;
 
 public class Person {
-    private String firstName;
-    private String secondName;
-    private String patronymic;
+    protected String firstName;
+    protected String secondName;
+    protected String patronymic;
     private int age;
     private String male;
     private LocalDate dateOfBirth;

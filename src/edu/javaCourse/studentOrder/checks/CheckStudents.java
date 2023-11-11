@@ -9,7 +9,7 @@ public class CheckStudents {
    private   String password;
 
     public AnswerStudents checkStudents(StudentOrder studentOrder) {
-        System.out.println("edu.javaCourse.studentOrder.validators.checks.CheckStudents is running!");
+        System.out.println("CheckStudents is running!");
         AnswerStudents ansStudents = new AnswerStudents();
         return ansStudents;
     }

@@ -9,7 +9,7 @@ public class CheckWedding {
     private String password;
 
     public AnswerWedding checkWedding(StudentOrder studentOrder) {
-        System.out.println("edu.javaCourse.studentOrder.validators.checks.CheckWedding is running!");
+        System.out.println("CheckWedding is running!");
         AnswerWedding ansWedding = new AnswerWedding();
         return ansWedding;
     }

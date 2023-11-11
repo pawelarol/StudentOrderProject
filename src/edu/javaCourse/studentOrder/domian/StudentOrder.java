@@ -8,6 +8,10 @@ public class StudentOrder extends Adult {
     private String wave;
     private String child;
 
+    public String getDateHusband(){
+        return (firstName + " " + secondName + " " + patronymic);
+    }
+
 
     public String getStudentOrderId() {
         return studentOrderId;

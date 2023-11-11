@@ -3,13 +3,14 @@ package edu.javaCourse.studentOrder.checks;
 import edu.javaCourse.studentOrder.answers.AnswerCityRegister;
 import edu.javaCourse.studentOrder.domian.StudentOrder;
 
-public class СheckCityRegister {
+public class CheckCityRegister {
     private String host;
     private String login;
     private String password;
 
    public AnswerCityRegister checkCityRegister(StudentOrder studentOrder) {
-        System.out.println("CheckCityRegister is running!" + host + login + password);
+        System.out.println("CheckCityRegister is running!");
+       System.out.println("Hostname: " + host + "; " + "Login: " + login + "; " + "Password: " + password + "; ");
         AnswerCityRegister ansCityRegister = new AnswerCityRegister();
         ansCityRegister.setSuccses(true);
         return ansCityRegister;

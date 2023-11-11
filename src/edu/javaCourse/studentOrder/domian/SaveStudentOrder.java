@@ -9,9 +9,11 @@ public class SaveStudentOrder {
 
    public static StudentOrder buildStudentOrder(){
        StudentOrder so = new StudentOrder();
-       Adult husband = new Adult();
-       husband.setFirstName("Arol");
-       so.setHusband(husband);
+       so.setFirstName("Arol");
+       so.setSecondName("Pavel");
+       so.patronymic = "Sergeevich";
+       String dateHusband = so.getDateHusband();
+       System.out.println(dateHusband);
        return so;
     }
 }
