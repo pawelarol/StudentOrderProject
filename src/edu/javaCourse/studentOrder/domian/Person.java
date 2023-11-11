@@ -15,8 +15,15 @@ public class Person {
     private String birthNumber;
     private LocalDate issueDatePassport;
     private String issueDepartament;
+    private Adress adress;
 
+    public Adress getAdress() {
+        return adress;
+    }
 
+    public void setAdress(Adress adress) {
+        this.adress = adress;
+    }
 
     public String getIssueDepartament() {
         return issueDepartament;

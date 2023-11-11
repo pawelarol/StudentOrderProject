@@ -9,6 +9,7 @@ import edu.javaCourse.studentOrder.checks.CheckChildren;
 import edu.javaCourse.studentOrder.checks.CheckStudents;
 import edu.javaCourse.studentOrder.checks.CheckWedding;
 import edu.javaCourse.studentOrder.checks.CheckCityRegister;
+import edu.javaCourse.studentOrder.domian.SaveStudentOrder;
 import edu.javaCourse.studentOrder.domian.StudentOrder;
 
 public class StudentOrderValidator {
@@ -32,30 +33,26 @@ public class StudentOrderValidator {
         mailSender = new MailSender();
     }
     private void checkAll() {
-        int counter = 0;
-        while (counter <2){
-        StudentOrder so = readStudentOrder();
-        if(so == null) {
-            break;
-        }
-        AnswerCityRegister ansCityRegister = checkCityRegister(so);
-            if (!ansCityRegister.setSuccses(true)) {
-                sendBadMail(so);
-                continue;
-            }
-            checkStudents(so);
-            checkWedding(so);
-            checkChildren(so);
-            sendMail(so);
+        StudentOrder[] arraySo = readStudentOrder();
+        for( StudentOrder so :arraySo ){
+            checkOneOrder(so);
         }
       }
 
-    private void sendBadMail(StudentOrder studentOrder) {
-        mailSender.sendBadMail(studentOrder);
-    }
+      public void checkOneOrder(StudentOrder so){
+      AnswerCityRegister asnCity =  checkCityRegister(so);
+      AnswerStudents ansStud = checkStudents(so);
+      AnswerWedding ansWedd  = checkWedding(so);
+      AnswerChildren ansChild = checkChildren(so);
+          sendMail(so);
+      }
 
-    private static StudentOrder readStudentOrder() {
-        return new StudentOrder();
+    public StudentOrder[] readStudentOrder() {
+        StudentOrder[] arrayOrder = new StudentOrder[3];
+        for (int i = 0; i< arrayOrder.length; i++){
+          arrayOrder[i] = SaveStudentOrder.buildStudentOrder(i);
+        }
+        return arrayOrder;
     }
     private void sendMail(StudentOrder studentOrder) {
       mailSender.sendMail(studentOrder);
