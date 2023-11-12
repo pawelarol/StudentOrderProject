@@ -1,6 +1,8 @@
 package edu.javaCourse.studentOrder.domian;
 
-public class Adress  extends Person{
+import java.time.LocalDate;
+
+public class Adress {
     private String city;
     private String street;
     private String building;

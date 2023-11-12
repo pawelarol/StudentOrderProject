@@ -48,7 +48,7 @@ public class StudentOrderValidator {
       }
 
     public StudentOrder[] readStudentOrder() {
-        StudentOrder[] arrayOrder = new StudentOrder[3];
+        StudentOrder[] arrayOrder = new StudentOrder[2];
         for (int  i = 0; i< arrayOrder.length; i++){
           arrayOrder[i] = SaveStudentOrder.buildStudentOrder(i);
         }

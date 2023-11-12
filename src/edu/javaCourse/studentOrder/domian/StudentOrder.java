@@ -1,25 +1,12 @@
 package edu.javaCourse.studentOrder.domian;
 
 
-public class StudentOrder extends Person{
+public class StudentOrder {
 
     private long studentOrderId;
-    private Person husband;
-    private Person wave;
-    private Person child;
-
-    public String getDateChild() {
-        return (firstName + " " + secondName + " " + patronymic);
-    }
-
-    public String getDateWave() {
-        return (firstName + " " + secondName + " " + patronymic);
-    }
-
-    public String getDateHusband() {
-        return (firstName + " " + secondName + " " + patronymic);
-    }
-
+    private Adult husband;
+    private Adult wave;
+    private Child child;
 
     public long getStudentOrderId() {
         return studentOrderId;
@@ -29,27 +16,27 @@ public class StudentOrder extends Person{
         this.studentOrderId = studentOrderId;
     }
 
-    public Person getHusband() {
+    public Adult getHusband() {
         return husband;
     }
 
-    public void setHusband(String husband, Person person) {
-        this.husband = (Person) person;
+    public void setHusband(Adult husband) {
+        this.husband = husband;
     }
 
-    public Person getWave() {
+    public Adult getWave() {
         return wave;
     }
 
-    public void setWave(String wave, Person person) {
-        this.wave = (Person) person;
+    public void setWave(Adult wave) {
+        this.wave = wave;
     }
 
-    public Person getChild() {
+    public Child getChild() {
         return child;
     }
 
-    public void setChild(String child, Person person) {
-        this.child = (Person) person;
+    public void setChild(Child child) {
+        this.child = child;
     }
 }

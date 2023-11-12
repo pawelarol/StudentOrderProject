@@ -19,4 +19,12 @@ public class CityRegisterIntermediaries {
     public void setStatusResident(Boolean statusResident) {
         this.statusResident = statusResident;
     }
+
+    @Override
+    public String toString() {
+        return "CityRegisterIntermediaries{" +
+                "exists=" + exists +
+                ", statusResident=" + statusResident +
+                '}';
+    }
 }

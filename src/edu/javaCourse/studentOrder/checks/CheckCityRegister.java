@@ -5,6 +5,7 @@ import edu.javaCourse.studentOrder.Interfaces.CheckOnePerson;
 import edu.javaCourse.studentOrder.RealCheckers.RealCheckCityRegister;
 import edu.javaCourse.studentOrder.answers.AnswerCityRegister;
 import edu.javaCourse.studentOrder.domian.StudentOrder;
+import edu.javaCourse.studentOrder.intermediares.CityRegisterIntermediaries;
 
 public class CheckCityRegister {
     private String host;
@@ -19,14 +20,14 @@ public class CheckCityRegister {
 
    public AnswerCityRegister checkCityRegister(StudentOrder studentOrder) {
         try {
-            personChecker.checkPerson(studentOrder.getHusband());
-            personChecker.checkPerson(studentOrder.getWave());
-            personChecker.checkPerson(studentOrder.getChild());
+           CityRegisterIntermediaries ansInterH = personChecker.checkPerson(studentOrder.getHusband());
+           CityRegisterIntermediaries ansInterW = personChecker.checkPerson(studentOrder.getWave());
+           CityRegisterIntermediaries ansInterC = personChecker.checkPerson(studentOrder.getChild());
         } catch (Exception e){
             e.printStackTrace();
         }
         System.out.println("CheckCityRegister is running!");
-        System.out.println("Hostname: " + host + "; " + "Login: " + login + "; " + "Password: " + password + "; ");
+       // System.out.println("Hostname: " + host + "; " + "Login: " + login + "; " + "Password: " + password + "; ");
         AnswerCityRegister ansCityRegister = new AnswerCityRegister();
         ansCityRegister.setSuccses(true);
         return ansCityRegister;

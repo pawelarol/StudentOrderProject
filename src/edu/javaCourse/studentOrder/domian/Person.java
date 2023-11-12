@@ -6,16 +6,25 @@ public class Person {
     protected String firstName;
     protected String secondName;
     protected String patronymic;
-    private int age;
-    private String male;
+    private String age;
+    private String gender;
     private LocalDate dateOfBirth;
     private String placeOfBirth;
-    private long passportNumber;
-    private long passportSeria;
-    private String birthNumber;
+    private String passportNumber;
+    private String passportSeria;
     private LocalDate issueDatePassport;
     private String issueDepartament;
     private Adress adress;
+
+
+    public Person(String firstName, String secondName, String patronymic, String age, String gender, LocalDate dateOfBirth) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.patronymic = patronymic;
+        this.age = age;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+    }
 
     public Adress getAdress() {
         return adress;
@@ -41,11 +50,11 @@ public class Person {
         this.issueDatePassport = issueDatePassport;
     }
 
-    public long getPassportSeria() {
+    public String getPassportSeria() {
         return passportSeria;
     }
 
-    public void setPassportSeria(long passportSeria) {
+    public void setPassportSeria(String passportSeria) {
         this.passportSeria = passportSeria;
     }
 
@@ -73,20 +82,20 @@ public class Person {
         this.patronymic = patronymic;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
-    public String getMale() {
-        return male;
+    public String getGender() {
+        return gender;
     }
 
-    public void setMale(String male) {
-        this.male = male;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public LocalDate getDateOfBirth() {
@@ -105,19 +114,12 @@ public class Person {
         this.placeOfBirth = placeOfBirth;
     }
 
-    public long getPassportNumber() {
+    public String getPassportNumber() {
         return passportNumber;
     }
 
-    public void setPassportNumber(long passportNumber) {
+    public void setPassportNumber(String passportNumber) {
         this.passportNumber = passportNumber;
     }
 
-    public String getBirthNumber() {
-        return birthNumber;
-    }
-
-    public void setBirthNumber(String birthNumber) {
-        this.birthNumber = birthNumber;
-    }
 }
