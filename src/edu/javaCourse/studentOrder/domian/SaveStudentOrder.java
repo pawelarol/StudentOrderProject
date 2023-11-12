@@ -6,9 +6,9 @@ public class SaveStudentOrder {
        buildStudentOrder(so.getStudentOrderId());
 
     }
-   public static StudentOrder buildStudentOrder(long id){
-       StudentOrder so = new StudentOrder();
-       so.setStudentOrderId(id);
+   public static StudentOrder buildStudentOrder(long id) {
+           StudentOrder so = new StudentOrder();
+           so.setStudentOrderId(id);
        return so;
-    }
+   }
 }

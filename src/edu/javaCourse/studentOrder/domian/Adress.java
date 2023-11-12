@@ -1,6 +1,6 @@
 package edu.javaCourse.studentOrder.domian;
 
-public class Adress  {
+public class Adress  extends Person{
     private String city;
     private String street;
     private String building;
