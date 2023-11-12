@@ -18,10 +18,13 @@ public class CheckCityRegister {
     }
 
    public AnswerCityRegister checkCityRegister(StudentOrder studentOrder) {
-        personChecker.checkPerson(studentOrder.getHusband());
-        personChecker.checkPerson(studentOrder.getWave());
-        personChecker.checkPerson(studentOrder.getChild());
-
+        try {
+            personChecker.checkPerson(studentOrder.getHusband());
+            personChecker.checkPerson(studentOrder.getWave());
+            personChecker.checkPerson(studentOrder.getChild());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
         System.out.println("CheckCityRegister is running!");
         System.out.println("Hostname: " + host + "; " + "Login: " + login + "; " + "Password: " + password + "; ");
         AnswerCityRegister ansCityRegister = new AnswerCityRegister();
