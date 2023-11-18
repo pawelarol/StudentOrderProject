@@ -22,8 +22,8 @@ public class FakeCheckCityRegister implements CheckOnePerson {
     public CityRegisterIntermediaries checkPerson(Person person) throws CityRegisterException {
          CityRegisterIntermediaries responce = new CityRegisterIntermediaries();
          if(person instanceof Adult){
-             Adult t = (Adult) person;
-             String passportSeria = t.getPassportSeria();
+             Adult adultObject = (Adult) person;
+             String passportSeria = adultObject.getPassportSeria();
              if(passportSeria.equals(rightHusband) || passportSeria.equals(rightWave)){
                  responce.setExists(true);
                  responce.setStatusResident(true);

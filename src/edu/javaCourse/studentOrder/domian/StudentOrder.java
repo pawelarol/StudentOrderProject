@@ -1,12 +1,15 @@
 package edu.javaCourse.studentOrder.domian;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StudentOrder {
 
     private long studentOrderId;
     private Adult husband;
     private Adult wave;
-    private Child child;
+    private List<Child> children;
 
     public long getStudentOrderId() {
         return studentOrderId;
@@ -32,11 +35,14 @@ public class StudentOrder {
         this.wave = wave;
     }
 
-    public Child getChild() {
-        return child;
+    public List<Child> getChildren() {
+        return children;
     }
 
-    public void setChild(Child child) {
-        this.child = child;
+    public void addChild(List<Child> child) {
+        if(children ==null) {
+            this.children = new ArrayList<>(5);
+        }
+        children.addAll(child);
     }
 }

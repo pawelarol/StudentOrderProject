@@ -2,10 +2,14 @@ package edu.javaCourse.studentOrder.checks;
 
 import edu.javaCourse.studentOrder.FakeCheckers.FakeCheckCityRegister;
 import edu.javaCourse.studentOrder.Interfaces.CheckOnePerson;
-import edu.javaCourse.studentOrder.RealCheckers.RealCheckCityRegister;
 import edu.javaCourse.studentOrder.answers.AnswerCityRegister;
+import edu.javaCourse.studentOrder.domian.Child;
 import edu.javaCourse.studentOrder.domian.StudentOrder;
 import edu.javaCourse.studentOrder.intermediares.CityRegisterIntermediaries;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class CheckCityRegister {
     private String host;
@@ -22,7 +26,11 @@ public class CheckCityRegister {
         try {
            CityRegisterIntermediaries ansInterH = personChecker.checkPerson(studentOrder.getHusband());
            CityRegisterIntermediaries ansInterW = personChecker.checkPerson(studentOrder.getWave());
-           CityRegisterIntermediaries ansInterC = personChecker.checkPerson(studentOrder.getChild());
+           List<Child> childList = studentOrder.getChildren();
+           for(Iterator<Child> itChild = childList.iterator(); itChild.hasNext();) {
+               Child child =itChild.next();
+               CityRegisterIntermediaries ansInterC = personChecker.checkPerson(child);
+           }
         } catch (Exception e){
             e.printStackTrace();
         }

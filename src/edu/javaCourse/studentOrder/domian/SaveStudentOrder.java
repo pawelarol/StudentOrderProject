@@ -3,6 +3,8 @@ package edu.javaCourse.studentOrder.domian;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SaveStudentOrder {
     public static void main(String[] args) {
@@ -18,16 +20,17 @@ public class SaveStudentOrder {
 
        Adult husband = getAdult(id, adress);
        Adult wave = getWave(id, adress);
-       Child child = getChild(id, adress);
+       List<Child> getChildren = getChild(id, adress);
 
        so.setHusband(husband);
        so.setWave(wave);
-       so.setChild(child);
+       so.addChild(getChildren);
        return so;
    }
 
     @NotNull
-    private static Child getChild(long id, Adress adress) {
+    private static List<Child> getChild(long id, Adress adress) {
+        List<Child> childList = new ArrayList<>();
         Child child = new Child("Arol", "Oleg","Pavlovich", "3", "male", LocalDate.of(2020,4,1));
         child.setPlaceOfBirth("Belarus, Grodno");
         child.setPassportSeria("3000");
@@ -38,7 +41,20 @@ public class SaveStudentOrder {
         child.setIssueDate(LocalDate.of(2020,4,1));
         child.setIssueDepartment("ЗАГС" + id);
         child.setAdress(adress);
-        return child;
+
+        Child child1 = new Child("Arol", "Victor","Pavlovich", "3", "male", LocalDate.of(2020,4,1));
+        child1.setPlaceOfBirth("Belarus, Grodno");
+        child1.setPassportSeria("4000");
+        child1.setPassportNumber(" " +("400000" + id));
+        child1.setIssueDatePassport(LocalDate.of(2023,1,3));
+        child1.setIssueDepartament("ROVD Grodno" + id);
+        child1.setCertificateNumber("" + (30 + id));
+        child1.setIssueDate(LocalDate.of(2020,4,1));
+        child1.setIssueDepartment("ЗАГС" + id);
+        child1.setAdress(adress);
+        childList.add(child1);
+        childList.add(child);
+        return childList;
     }
 
     @NotNull
