@@ -39,10 +39,10 @@ public class StudentOrder {
         return children;
     }
 
-    public void addChild(List<Child> child) {
+    public void addChild(Child child) {
         if(children ==null) {
             this.children = new ArrayList<>(5);
         }
-        children.addAll(child);
+        children.add(child);
     }
 }
