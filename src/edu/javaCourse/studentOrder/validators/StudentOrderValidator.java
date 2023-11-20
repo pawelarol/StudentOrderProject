@@ -2,13 +2,13 @@ package edu.javaCourse.studentOrder.validators;
 
 import edu.javaCourse.studentOrder.Senders.MailSender;
 import edu.javaCourse.studentOrder.answers.AnswerChildren;
-import edu.javaCourse.studentOrder.answers.AnswerCityRegister;
+import edu.javaCourse.studentOrder.CityRegister.AnswerCityRegister;
 import edu.javaCourse.studentOrder.answers.AnswerStudents;
 import edu.javaCourse.studentOrder.answers.AnswerWedding;
 import edu.javaCourse.studentOrder.checks.CheckChildren;
 import edu.javaCourse.studentOrder.checks.CheckStudents;
 import edu.javaCourse.studentOrder.checks.CheckWedding;
-import edu.javaCourse.studentOrder.checks.CheckCityRegister;
+import edu.javaCourse.studentOrder.CityRegister.CheckCityRegister;
 import edu.javaCourse.studentOrder.domian.SaveStudentOrder;
 import edu.javaCourse.studentOrder.domian.StudentOrder;
 
@@ -52,7 +52,7 @@ public class StudentOrderValidator {
 
     public List<StudentOrder> readStudentOrder() {
         List <StudentOrder>  studList = new LinkedList<>();
-       for(int i = 0; i<5; i++){
+       for(int i = 0; i<2; i++){
         StudentOrder readList  = SaveStudentOrder.buildStudentOrder(i);
           studList.add(readList);
         }

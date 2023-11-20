@@ -1,14 +1,12 @@
-package edu.javaCourse.studentOrder.checks;
+package edu.javaCourse.studentOrder.CityRegister;
 
 import edu.javaCourse.studentOrder.FakeCheckers.FakeCheckCityRegister;
 import edu.javaCourse.studentOrder.Interfaces.CheckOnePerson;
-import edu.javaCourse.studentOrder.answers.AnswerCityRegister;
 import edu.javaCourse.studentOrder.domian.Child;
+import edu.javaCourse.studentOrder.domian.Person;
 import edu.javaCourse.studentOrder.domian.StudentOrder;
-import edu.javaCourse.studentOrder.intermediares.CityRegisterIntermediaries;
+import edu.javaCourse.studentOrder.responses.CityRegisterResponce;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class CheckCityRegister {
@@ -23,24 +21,28 @@ public class CheckCityRegister {
     }
 
    public AnswerCityRegister checkCityRegister(StudentOrder studentOrder) {
-        try {
-           CityRegisterIntermediaries ansInterH = personChecker.checkPerson(studentOrder.getHusband());
-           CityRegisterIntermediaries ansInterW = personChecker.checkPerson(studentOrder.getWave());
-           List<Child> childList = studentOrder.getChildren();
-           for(Iterator<Child> itChild = childList.iterator(); itChild.hasNext();) {
-               Child child =itChild.next();
-               CityRegisterIntermediaries ansInterC = personChecker.checkPerson(child);
-           }
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+       AnswerCityRegister answerCityRegister = new AnswerCityRegister();
+       answerCityRegister.addItem(checkPerson(studentOrder.getHusband()));
+       answerCityRegister.addItem(checkPerson(studentOrder.getWave()));
+       List<Child> childList = studentOrder.getChildren();
+       for (Child child : childList) {
+           answerCityRegister.addItem(checkPerson(child));
+       }
         System.out.println("CheckCityRegister is running!");
        // System.out.println("Hostname: " + host + "; " + "Login: " + login + "; " + "Password: " + password + "; ");
-        AnswerCityRegister ansCityRegister = new AnswerCityRegister();
-        ansCityRegister.setSuccses(true);
-        return ansCityRegister;
+        return answerCityRegister;
     }
 
+    private CityRegisterItem checkPerson(Person person) {
+         CityRegisterItem.CityError error = null;
+         CityRegisterItem.StatusCheck status = null;
+        try {
+            CityRegisterResponce ansCity = personChecker.checkPerson(person);
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
     public String getHost() {
         return host;
     }

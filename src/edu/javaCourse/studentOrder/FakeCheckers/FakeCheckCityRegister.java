@@ -2,12 +2,10 @@ package edu.javaCourse.studentOrder.FakeCheckers;
 
 import edu.javaCourse.studentOrder.Exceptions.CityRegisterException;
 import edu.javaCourse.studentOrder.Interfaces.CheckOnePerson;
-import edu.javaCourse.studentOrder.checks.CheckCityRegister;
-import edu.javaCourse.studentOrder.domian.Adress;
 import edu.javaCourse.studentOrder.domian.Adult;
 import edu.javaCourse.studentOrder.domian.Child;
 import edu.javaCourse.studentOrder.domian.Person;
-import edu.javaCourse.studentOrder.intermediares.CityRegisterIntermediaries;
+import edu.javaCourse.studentOrder.responses.CityRegisterResponce;
 
 public class FakeCheckCityRegister implements CheckOnePerson {
 
@@ -19,8 +17,8 @@ public class FakeCheckCityRegister implements CheckOnePerson {
     private static final String ERRORWave = "2120";
 
 
-    public CityRegisterIntermediaries checkPerson(Person person) throws CityRegisterException {
-         CityRegisterIntermediaries responce = new CityRegisterIntermediaries();
+    public CityRegisterResponce checkPerson(Person person) throws CityRegisterException {
+         CityRegisterResponce responce = new CityRegisterResponce();
          if(person instanceof Adult){
              Adult adultObject = (Adult) person;
              String passportSeria = adultObject.getPassportSeria();

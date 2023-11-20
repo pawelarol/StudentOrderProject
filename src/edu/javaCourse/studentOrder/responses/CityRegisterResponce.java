@@ -1,8 +1,11 @@
-package edu.javaCourse.studentOrder.intermediares;
+package edu.javaCourse.studentOrder.responses;
 
-public class CityRegisterIntermediaries {
+
+public class CityRegisterResponce {
    private boolean exists;
    private Boolean statusResident;
+
+
 
     public boolean isExists() {
         return exists;
