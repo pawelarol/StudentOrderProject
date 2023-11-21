@@ -1,6 +1,7 @@
 package edu.javaCourse.studentOrder.FakeCheckers;
 
 import edu.javaCourse.studentOrder.Exceptions.CityRegisterException;
+import edu.javaCourse.studentOrder.Exceptions.TransportException;
 import edu.javaCourse.studentOrder.Interfaces.CheckOnePerson;
 import edu.javaCourse.studentOrder.domian.Adult;
 import edu.javaCourse.studentOrder.domian.Child;
@@ -15,9 +16,11 @@ public class FakeCheckCityRegister implements CheckOnePerson {
     private static final String badWave = "2020";
     private static final String ERRORHusband = "1120";
     private static final String ERRORWave = "2120";
+    private static final String ERROR_T1 = "1122";
+    private static final String ERROR_T2 = "2122";
 
 
-    public CityRegisterResponce checkPerson(Person person) throws CityRegisterException {
+    public CityRegisterResponce checkPerson(Person person) throws CityRegisterException, TransportException {
          CityRegisterResponce responce = new CityRegisterResponce();
          if(person instanceof Adult){
              Adult adultObject = (Adult) person;
@@ -28,8 +31,11 @@ public class FakeCheckCityRegister implements CheckOnePerson {
                  if (passportSeria.equals(badHusband) || passportSeria.equals(badWave)){
                      responce.setExists(false);
                  } if(passportSeria.equals(ERRORHusband) || passportSeria.equals(ERRORWave)){
-                     CityRegisterException ex = new CityRegisterException("Fake Error");
+                     CityRegisterException ex = new CityRegisterException("GRN Error" + passportSeria);
                      throw ex;
+                 }if (passportSeria.equals(ERROR_T1) || passportSeria.equals(ERROR_T2)){
+                     TransportException tex = new TransportException("Transport Error" + passportSeria);
+                     throw tex;
                  }
              }
          }

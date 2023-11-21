@@ -18,6 +18,11 @@ public class CityRegisterItem {
         public String getCode() {
             return code;
         }
+
+        public CityError(String text, String code) {
+            this.text = text;
+            this.code = code;
+        }
     }
 
     private Person person;
