@@ -6,8 +6,7 @@ import edu.javaCourse.studentOrder.domian.Person;
 import edu.javaCourse.studentOrder.responses.CityRegisterResponce;
 
 public interface CheckOnePerson {
-    default CityRegisterResponce checkPerson(Person person) throws CityRegisterException, TransportException {
-        return null;
-    }
+   CityRegisterResponce checkPersonInterface
+           (Person person) throws CityRegisterException, TransportException;
 }
 

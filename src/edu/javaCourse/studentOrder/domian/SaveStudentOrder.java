@@ -15,8 +15,8 @@ public class SaveStudentOrder {
 
         Adult husband = new Adult("Arol", "Pavel", "Sergeevich", "25", "male", LocalDate.of(1998, 7, 12));
         husband.setPlaceOfBirth("Belarus, Grodno");
-        husband.setPassportSeria("1000");
-        husband.setPassportNumber(" " + ("100000" + id));
+        husband.setPassportSeria("" + (1000 + id ));
+        husband.setPassportNumber("" + (100000 + id));
         husband.setIssueDatePassport(LocalDate.of(2023, 6, 30));
         husband.setIssueDepartament("ROVD Grodno" + id);
         husband.setStudentNumber("" + (1000000 + id));
@@ -28,8 +28,8 @@ public class SaveStudentOrder {
 
         Adult wave = new Adult("Arol", "Anastasia", "Alexandrovna", "20", "female", LocalDate.of(2003, 10, 25));
         wave.setPlaceOfBirth("Ukraina, Dnepr");
-        wave.setPassportSeria("2000");
-        wave.setPassportNumber(" " + ("20000" + id));
+        wave.setPassportSeria("" + (2000 + id));
+        wave.setPassportNumber("" + (20000 + id));
         wave.setIssueDatePassport(LocalDate.of(2023, 3, 1));
         wave.setIssueDepartament("ROVD Dnepr" + id);
         wave.setStudentNumber("" + (200000 + id));
@@ -41,8 +41,8 @@ public class SaveStudentOrder {
 
         Child child = new Child("Arol", "Oleg", "Pavlovich", "3", "male", LocalDate.of(2020, 4, 1));
         child.setPlaceOfBirth("Belarus, Grodno");
-        child.setPassportSeria("3000");
-        child.setPassportNumber(" " + ("300000" + id));
+        child.setPassportSeria("" + (3000 + id ));
+        child.setPassportNumber("" + (300000 + id));
         child.setIssueDatePassport(LocalDate.of(2023, 1, 3));
         child.setIssueDepartament("ROVD Grodno" + id);
         child.setCertificateNumber("" + (30 + id));
@@ -52,8 +52,8 @@ public class SaveStudentOrder {
 
         Child child1 = new Child("Arol", "Victor", "Pavlovich", "3", "male", LocalDate.of(2020, 4, 1));
         child1.setPlaceOfBirth("Belarus, Grodno");
-        child1.setPassportSeria("4000");
-        child1.setPassportNumber(" " + ("400000" + id));
+        child1.setPassportSeria("" +(4000 + id));
+        child1.setPassportNumber("" + (400000 + id));
         child1.setIssueDatePassport(LocalDate.of(2023, 1, 3));
         child1.setIssueDepartament("ROVD Grodno" + id);
         child1.setCertificateNumber("" + (30 + id));
@@ -68,4 +68,7 @@ public class SaveStudentOrder {
         so.addChild(child1);
         return so;
     }
+
+
+
 }

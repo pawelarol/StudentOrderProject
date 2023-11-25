@@ -11,6 +11,7 @@ import edu.javaCourse.studentOrder.checks.CheckWedding;
 import edu.javaCourse.studentOrder.CityRegister.CheckCityRegister;
 import edu.javaCourse.studentOrder.domian.SaveStudentOrder;
 import edu.javaCourse.studentOrder.domian.StudentOrder;
+import org.w3c.dom.ls.LSOutput;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -43,19 +44,22 @@ public class StudentOrderValidator {
       }
 
       public void checkOneOrder(StudentOrder so){
-      AnswerCityRegister asnCity =  checkCityRegister(so);
-      AnswerStudents ansStud = checkStudents(so);
-      AnswerWedding ansWedd  = checkWedding(so);
-      AnswerChildren ansChild = checkChildren(so);
-          sendMail(so);
+     AnswerCityRegister asnCity =  checkCityRegister(so);
+//      AnswerStudents ansStud = checkStudents(so);
+//      AnswerWedding ansWedd  = checkWedding(so);
+//      AnswerChildren ansChild = checkChildren(so);
+//      sendMail(so);
       }
 
     public List<StudentOrder> readStudentOrder() {
         List <StudentOrder>  studList = new LinkedList<>();
-       for(int i = 0; i<2; i++){
+       for(int i = 0; i<4; i++){
         StudentOrder readList  = SaveStudentOrder.buildStudentOrder(i);
           studList.add(readList);
         }
+       for(StudentOrder std : studList){
+           System.out.println("ID" + std.getHusband().getPassportSeria());
+       }
         return studList;
     }
 

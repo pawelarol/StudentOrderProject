@@ -3,7 +3,7 @@ package edu.javaCourse.studentOrder.CityRegister;
 import edu.javaCourse.studentOrder.domian.Person;
 
 public class CityRegisterItem {
-    public enum StatusCheck {
+    public enum CityStatus {
         YES,NO,ERROR;
     }
 
@@ -26,15 +26,15 @@ public class CityRegisterItem {
     }
 
     private Person person;
-    private StatusCheck status;
+    private CityStatus status;
     private CityError error;
 
-    public CityRegisterItem(Person person, StatusCheck status) {
+    public CityRegisterItem(Person person, CityStatus status) {
         this.person = person;
         this.status = status;
     }
 
-    public CityRegisterItem(Person person, StatusCheck status, CityError error) {
+    public CityRegisterItem(Person person, CityStatus status, CityError error) {
         this.person = person;
         this.status = status;
         this.error = error;
@@ -44,7 +44,7 @@ public class CityRegisterItem {
         return person;
     }
 
-    public StatusCheck getStatus() {
+    public CityStatus getStatus() {
         return status;
     }
 

@@ -45,4 +45,14 @@ public class StudentOrder {
         }
         children.add(child);
     }
+
+    @Override
+    public String toString() {
+        return "StudentOrder{" +
+                "studentOrderId=" + studentOrderId +
+                ", husband=" + husband +
+                ", wave=" + wave +
+                ", children=" + children +
+                '}';
+    }
 }

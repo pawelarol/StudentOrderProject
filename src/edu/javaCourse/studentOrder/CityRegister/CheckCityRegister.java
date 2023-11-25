@@ -1,6 +1,7 @@
 package edu.javaCourse.studentOrder.CityRegister;
 
 import edu.javaCourse.studentOrder.Exceptions.CityRegisterException;
+import edu.javaCourse.studentOrder.Exceptions.TransportException;
 import edu.javaCourse.studentOrder.FakeCheckers.FakeCheckCityRegister;
 import edu.javaCourse.studentOrder.Interfaces.CheckOnePerson;
 import edu.javaCourse.studentOrder.domian.Child;
@@ -37,20 +38,22 @@ public class CheckCityRegister {
 
     private CityRegisterItem checkPerson(Person person) {
          CityRegisterItem.CityError error = null;
-         CityRegisterItem.StatusCheck status;
+         CityRegisterItem.CityStatus status = null;
         try {
-            CityRegisterResponce ansCity = personChecker.checkPerson(person);
+            CityRegisterResponce ansCity = personChecker.checkPersonInterface(person);
             status = ansCity.isExists() ?
-                    CityRegisterItem.StatusCheck.YES:
-                    CityRegisterItem.StatusCheck.NO;
+                    CityRegisterItem.CityStatus.YES:
+                  CityRegisterItem.CityStatus.NO;
         } catch (CityRegisterException e) {
             e.printStackTrace(System.out);
-            status = CityRegisterItem.StatusCheck.ERROR;
+            status = CityRegisterItem.CityStatus.ERROR;
             error = new CityRegisterItem.CityError(e.getMessage(), e.getErrorCode());
-        }catch(Exception tex){
+        }catch(TransportException tex){
             tex.printStackTrace(System.out);
-            status = CityRegisterItem.StatusCheck.ERROR;
+            status = CityRegisterItem.CityStatus.ERROR;
             error= new CityRegisterItem.CityError(tex.getMessage(), T_CODE);
+        }catch(Exception e){
+            e.printStackTrace();
         }
 
         CityRegisterItem ans = new CityRegisterItem(person,status,error);

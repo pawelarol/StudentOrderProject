@@ -7,7 +7,7 @@ import edu.javaCourse.studentOrder.domian.Person;
 import edu.javaCourse.studentOrder.responses.CityRegisterResponce;
 
 public class RealCheckCityRegister implements CheckOnePerson {
-    public CityRegisterResponce checkPerson(Person person) throws CityRegisterException, TransportException {
+    public CityRegisterResponce checkPersonInterface(Person person) throws CityRegisterException, TransportException {
         return null;
     }
 }
