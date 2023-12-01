@@ -7,8 +7,8 @@ public class Child extends Person {
     private LocalDate issueDate;
     private String issueDepartment;
 
-    public Child(String surName, String givenName, String patronymic, String age, String gender, LocalDate dateOfBirth) {
-        super(surName, givenName, patronymic, age, gender, dateOfBirth);
+    public Child(String surName, String givenName, String patronymic, LocalDate dateOfBirth) {
+        super(surName, givenName, patronymic, dateOfBirth);
     }
 
     public String getCertificateNumber() {

@@ -6,23 +6,18 @@ public class Person {
     protected String firstName;
     protected String secondName;
     protected String patronymic;
-    private String age;
-    private String gender;
     private LocalDate dateOfBirth;
-    private String placeOfBirth;
     private String passportNumber;
-    private String passportSeria;
+    private String passportSerial;
     private LocalDate issueDatePassport;
-    private String issueDepartament;
+    private String issueDepartment;
     private Adress adress;
 
 
-    public Person(String firstName, String secondName, String patronymic, String age, String gender, LocalDate dateOfBirth) {
+    public Person(String firstName, String secondName, String patronymic, LocalDate dateOfBirth) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.patronymic = patronymic;
-        this.age = age;
-        this.gender = gender;
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -35,11 +30,11 @@ public class Person {
     }
 
     public String getIssueDepartament() {
-        return issueDepartament;
+        return issueDepartment;
     }
 
-    public void setIssueDepartament(String issueDepartament) {
-        this.issueDepartament = issueDepartament;
+    public void setIssueDepartament(String issueDepartment) {
+        this.issueDepartment = issueDepartment;
     }
 
     public LocalDate getIssueDatePassport() {
@@ -50,12 +45,12 @@ public class Person {
         this.issueDatePassport = issueDatePassport;
     }
 
-    public String getPassportSeria() {
-        return passportSeria;
+    public String getPassportSerial() {
+        return passportSerial;
     }
 
-    public void setPassportSeria(String passportSeria) {
-        this.passportSeria = passportSeria;
+    public void setPassportSerial(String passportSerial) {
+        this.passportSerial = passportSerial;
     }
 
     public String getFirstName() {
@@ -82,36 +77,12 @@ public class Person {
         this.patronymic = patronymic;
     }
 
-    public String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getPlaceOfBirth() {
-        return placeOfBirth;
-    }
-
-    public void setPlaceOfBirth(String placeOfBirth) {
-        this.placeOfBirth = placeOfBirth;
     }
 
     public String getPassportNumber() {

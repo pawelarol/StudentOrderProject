@@ -5,19 +5,19 @@ import java.time.LocalDate;
 public class Adult extends Person{
     private String studentNumber;
     private String university;
-    private String issueMarried;
+    private String departmentMarriage;
     private String marriageCertificateId;
     private LocalDate marriageDate;
 
-    public Adult(String firstName, String secondName, String patronymic, String age, String male, LocalDate dateOfBirth){
-    super (firstName, secondName, patronymic, age, male, dateOfBirth);
+    public Adult(String firstName, String secondName, String patronymic, LocalDate dateOfBirth){
+    super (firstName, secondName, patronymic, dateOfBirth);
     }
-    public String getIssueMarried() {
-        return issueMarried;
+    public String getDepartmentMarriage() {
+        return departmentMarriage;
     }
 
-    public void setIssueMarried(String issueMarried) {
-        this.issueMarried = issueMarried;
+    public void setDepartmentMarriage(String departmentMarriage) {
+        this.departmentMarriage = departmentMarriage;
     }
 
     public String getMarriageCertificateId() {

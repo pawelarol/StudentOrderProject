@@ -4,17 +4,26 @@ import java.time.LocalDate;
 
 public class Adress {
     private String city;
+    private String area;
     private String street;
     private String building;
     private String apartment;
     private String postcode;
 
-    public Adress(String city, String street, String building, String apartment, String postcode) {
+    public Adress(String city, String area, String street, String building, String apartment, String postcode) {
         this.city = city;
         this.street = street;
         this.building = building;
         this.apartment = apartment;
         this.postcode = postcode;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
     }
 
     public String getCity() {

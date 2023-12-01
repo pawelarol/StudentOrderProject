@@ -26,7 +26,7 @@ public class FakeCheckCityRegister implements CheckOnePerson {
         CityRegisterResponce responce = new CityRegisterResponce();
         if (person instanceof Adult) {
             Adult adultObject = (Adult) person;
-            String passportSeria = adultObject.getPassportSeria();
+            String passportSeria = adultObject.getPassportSerial();
             if (passportSeria.equals(GOOD_W) || passportSeria.equals(GOOD_H)) {
                 // System.out.println("passport checkPerson" + passportSeria);
                 responce.setStatusResident(false);

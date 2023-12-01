@@ -11,7 +11,6 @@ import edu.javaCourse.studentOrder.checks.CheckWedding;
 import edu.javaCourse.studentOrder.CityRegister.CheckCityRegister;
 import edu.javaCourse.studentOrder.domian.SaveStudentOrder;
 import edu.javaCourse.studentOrder.domian.StudentOrder;
-import org.w3c.dom.ls.LSOutput;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -58,7 +57,7 @@ public class StudentOrderValidator {
           studList.add(readList);
         }
        for(StudentOrder std : studList){
-           System.out.println("ID" + std.getHusband().getPassportSeria());
+           System.out.println("ID" + std.getHusband().getPassportSerial());
        }
         return studList;
     }
