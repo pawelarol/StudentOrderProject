@@ -1,10 +1,20 @@
 package edu.javaCourse.studentOrder.domian;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.LocalDate;
 
 public class SaveStudentOrder {
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws Exception{
+     Class.forName("org.postgresql.Driver");
+        Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/studentOrder", "postgres", "postgres");
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM jc_child");
+        while(rs.next()){
+            System.out.println(rs.getLong(1) + ":" + rs.getString(2));
+        }
     }
 
     public static StudentOrder buildStudentOrder(long id) {
