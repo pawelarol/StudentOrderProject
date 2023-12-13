@@ -5,12 +5,12 @@ import java.time.LocalDate;
 public class Adress {
     private String city;
     private String area;
-    private String street;
+    private Street street;
     private String building;
     private String apartment;
     private String postcode;
 
-    public Adress(String city, String area, String street, String building, String apartment, String postcode) {
+    public Adress(String city, String area, Street street, String building, String apartment, String postcode) {
         this.city = city;
         this.street = street;
         this.building = building;
@@ -34,11 +34,11 @@ public class Adress {
         this.city = city;
     }
 
-    public String getStreet() {
+    public Street getStreet() {
         return street;
     }
 
-    public void setStreet(String street) {
+    public void setStreet(Street street) {
         this.street = street;
     }
 

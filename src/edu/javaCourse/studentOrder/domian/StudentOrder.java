@@ -47,7 +47,7 @@ public class StudentOrder {
     }
 
     @Override
-    public String toString() {
+            public String toString() {
         return "StudentOrder{" +
                 "studentOrderId=" + studentOrderId +
                 ", husband=" + husband +

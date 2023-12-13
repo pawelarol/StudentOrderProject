@@ -1,26 +1,25 @@
 package edu.javaCourse.studentOrder.domian;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
+import edu.javaCourse.studentOrder.dao.DictionaryDaoImpl;
+
 import java.time.LocalDate;
+import java.util.List;
 
 public class SaveStudentOrder {
     public static void main(String[] args) throws Exception{
-     Class.forName("org.postgresql.Driver");
-        Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/studentOrder", "postgres", "postgres");
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM jc_child");
-        while(rs.next()){
-            System.out.println(rs.getLong(1) + ":" + rs.getString(2));
-        }
+    List<Street> liststr = new DictionaryDaoImpl().findStreet("a");
+    for ( Street s : liststr){
+        System.out.println(s.getStreet_name());
+    }
     }
 
     public static StudentOrder buildStudentOrder(long id) {
         StudentOrder so = new StudentOrder();
 
-        Adress adress = new Adress("Warsaw", "Mokotow" ,"Pulawska", "81", "52", "02-595");
+        Street street = new Street(1, "Pulawska", "Mokotow");
+
+        Adress adress = new Adress("Warsaw", "Mokotow" ,street, "81", "52", "02-595");
 
         Adult husband = new Adult("Arol", "Pavel", "Sergeevich",  LocalDate.of(1998, 7, 12));
         husband.setPassportSerial("" + (1000 + id ));
