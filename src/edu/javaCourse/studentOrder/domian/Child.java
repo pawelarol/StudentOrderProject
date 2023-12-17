@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Child extends Person {
     private String certificateNumber;
     private LocalDate issueDate;
-    private String issueDepartment;
+    private PassportOffice issueDepartment;
 
     public Child(String surName, String givenName, String patronymic, LocalDate dateOfBirth) {
         super(surName, givenName, patronymic, dateOfBirth);
@@ -27,11 +27,14 @@ public class Child extends Person {
         this.issueDate = issueDate;
     }
 
-    public String getIssueDepartment() {
+    @Override
+    public PassportOffice getIssueDepartment() {
         return issueDepartment;
     }
 
-    public void setIssueDepartment(String issueDepartment) {
+    @Override
+    public void setIssueDepartment(PassportOffice issueDepartment) {
         this.issueDepartment = issueDepartment;
     }
 }
+

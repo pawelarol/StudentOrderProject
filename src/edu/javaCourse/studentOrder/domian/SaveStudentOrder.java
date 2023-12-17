@@ -4,6 +4,8 @@ package edu.javaCourse.studentOrder.domian;
 import edu.javaCourse.studentOrder.dao.DictionaryDaoImpl;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class SaveStudentOrder {
@@ -12,6 +14,33 @@ public class SaveStudentOrder {
     for ( Street s : liststr){
         System.out.println(s.getStreet_name());
     }
+
+    List<PassportOffice> po = new DictionaryDaoImpl().findPassportOffice("321098");
+    for(PassportOffice p : po){
+        System.out.println(p.getpOfficeName());
+    }
+
+        List<RegisterOffice> ro = new DictionaryDaoImpl().findRegisterOffice("456789");
+        for(RegisterOffice r : ro){
+            System.out.println( r.getRegisterName());
+        }
+        List <CountryStruct> cs = new DictionaryDaoImpl().findArea("");
+        for(CountryStruct c : cs){
+            System.out.println(c.getArea_id() + ":" + c.getArea_name());
+        }
+        List <CountryStruct> cs1 = new DictionaryDaoImpl().findArea("0200000000");
+        for(CountryStruct c : cs1){
+            System.out.println(c.getArea_id() + ":" + c.getArea_name());
+        }
+        List <CountryStruct> cs2 = new DictionaryDaoImpl().findArea("020010000000");
+        for(CountryStruct c : cs2){
+            System.out.println(c.getArea_id() + ":" + c.getArea_name());
+        }
+        List <CountryStruct> cs3 = new DictionaryDaoImpl().findArea("020010010000");
+        for(CountryStruct c : cs3){
+            System.out.println(c.getArea_id() + ":" + c.getArea_name());
+        }
+
     }
 
     public static StudentOrder buildStudentOrder(long id) {
@@ -22,47 +51,50 @@ public class SaveStudentOrder {
         Adress adress = new Adress("Warsaw", "Mokotow" ,street, "81", "52", "02-595");
 
         Adult husband = new Adult("Arol", "Pavel", "Sergeevich",  LocalDate.of(1998, 7, 12));
+       PassportOffice po  = new PassportOffice(1L, "", "");
+       husband.setIssueDepartment(po);
         husband.setPassportSerial("" + (1000 + id ));
         husband.setPassportNumber("" + (100000 + id));
         husband.setIssueDatePassport(LocalDate.of(2023, 6, 30));
-        husband.setIssueDepartament("ROVD Grodno" + id);
         husband.setStudentNumber("" + (1000000 + id));
         husband.setUniversity("GGPEK");
-        husband.setDepartmentMarriage("ЗАГС города Гродно");
-        husband.setMarriageCertificateId("" + (10000000 + id));
-        husband.setMarriageDate(LocalDate.of(2023, 11, 12));
+        RegisterOffice ro = new RegisterOffice(1L, "", "");
+        so.setDepartmentMarriage(ro);
+        so.setMarriageCertificateId("" + (10000000 + id));
+        so.setMarriageDate(LocalDate.of(2023, 11, 12));
         husband.setAdress(adress);
 
         Adult wave = new Adult("Arol", "Anastasia", "Alexandrovna",  LocalDate.of(2003, 10, 25));
+        PassportOffice po1 = new PassportOffice(1L, "", "");
+        wave.setIssueDepartment(po1);
         wave.setPassportSerial("" + (2000 + id));
         wave.setPassportNumber("" + (20000 + id));
         wave.setIssueDatePassport(LocalDate.of(2023, 3, 1));
-        wave.setIssueDepartament("ROVD Dnepr" + id);
         wave.setStudentNumber("" + (200000 + id));
         wave.setUniversity("Polski-Japonski");
-        wave.setDepartmentMarriage("ЗАГС города Гродно");
-        wave.setMarriageCertificateId("" + (20000002 + id));
-        wave.setMarriageDate(LocalDate.of(2023, 11, 12));
+        RegisterOffice ro1 = new RegisterOffice(1L, "", "");
+        so.setDepartmentMarriage(ro1);
+        so.setMarriageCertificateId("" + (20000002 + id));
+        so.setMarriageDate(LocalDate.of(2023, 11, 12));
         wave.setAdress(adress);
 
         Child child = new Child("Arol", "Oleg", "Pavlovich",  LocalDate.of(2020, 4, 1));
         child.setPassportSerial("" + (3000 + id ));
         child.setPassportNumber("" + (300000 + id));
         child.setIssueDatePassport(LocalDate.of(2023, 1, 3));
-        child.setIssueDepartament("ROVD Grodno" + id);
+        PassportOffice po2 = new PassportOffice(1L, "", "");
+        child.setIssueDepartment(po2);
         child.setCertificateNumber("" + (30 + id));
         child.setIssueDate(LocalDate.of(2020, 4, 1));
-        child.setIssueDepartment("ЗАГС" + id);
         child.setAdress(adress);
 
         Child child1 = new Child("Arol", "Victor", "Pavlovich",  LocalDate.of(2020, 4, 1));
         child1.setPassportSerial("" +(4000 + id));
         child1.setPassportNumber("" + (400000 + id));
         child1.setIssueDatePassport(LocalDate.of(2023, 1, 3));
-        child1.setIssueDepartament("ROVD Grodno" + id);
+        child1.setIssueDepartment(po2);
         child1.setCertificateNumber("" + (30 + id));
         child1.setIssueDate(LocalDate.of(2020, 4, 1));
-        child1.setIssueDepartment("ЗАГС" + id);
         child1.setAdress(adress);
 
         so.setStudentOrderId(id);

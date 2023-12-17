@@ -10,7 +10,7 @@ public class Person {
     private String passportNumber;
     private String passportSerial;
     private LocalDate issueDatePassport;
-    private String issueDepartment;
+    private PassportOffice issueDepartment;
     private Adress adress;
 
 
@@ -29,11 +29,11 @@ public class Person {
         this.adress = adress;
     }
 
-    public String getIssueDepartament() {
+    public PassportOffice getIssueDepartment() {
         return issueDepartment;
     }
 
-    public void setIssueDepartament(String issueDepartment) {
+    public void setIssueDepartment(PassportOffice issueDepartment) {
         this.issueDepartment = issueDepartment;
     }
 
