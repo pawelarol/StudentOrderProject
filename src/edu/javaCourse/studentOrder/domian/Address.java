@@ -1,8 +1,6 @@
 package edu.javaCourse.studentOrder.domian;
 
-import java.time.LocalDate;
-
-public class Adress {
+public class Address {
     private String city;
     private String area;
     private Street street;
@@ -10,8 +8,9 @@ public class Adress {
     private String apartment;
     private String postcode;
 
-    public Adress(String city, String area, Street street, String building, String apartment, String postcode) {
+    public Address(String city, String area, Street street, String building, String apartment, String postcode) {
         this.city = city;
+        this.area = area;
         this.street = street;
         this.building = building;
         this.apartment = apartment;

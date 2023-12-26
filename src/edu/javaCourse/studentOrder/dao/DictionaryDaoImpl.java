@@ -46,7 +46,7 @@ public class DictionaryDaoImpl implements DictionaryInterface {
            stmt.setString(1, "%" + pattern + "%");
            ResultSet rs = stmt.executeQuery();
            while (rs.next()) {
-               Street str = new Street(rs.getInt("street_code"),
+               Street str = new Street(rs.getLong("street_code"),
                        rs.getString("street_name"),
                        rs.getString("street_area"));
                result.add(str);
@@ -127,6 +127,6 @@ public class DictionaryDaoImpl implements DictionaryInterface {
         }else if(areaId.endsWith("0000")) {
             return areaId.substring(0, 8) + "____";
         }
-        throw new SQLException("Invalid parametr 'area_id" + areaId);
+        throw new SQLException("Invalid param 'area_id'" + areaId);
     }
 }

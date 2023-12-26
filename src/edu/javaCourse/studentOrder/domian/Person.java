@@ -11,7 +11,7 @@ public class Person {
     private String passportSerial;
     private LocalDate issueDatePassport;
     private PassportOffice issueDepartment;
-    private Adress adress;
+    private Address adress;
 
 
     public Person(String firstName, String secondName, String patronymic, LocalDate dateOfBirth) {
@@ -21,11 +21,11 @@ public class Person {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Adress getAdress() {
+    public Address getAdress() {
         return adress;
     }
 
-    public void setAdress(Adress adress) {
+    public void setAdress(Address adress) {
         this.adress = adress;
     }
 
