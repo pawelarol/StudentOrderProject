@@ -12,16 +12,17 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
 
     private static final String INSERT_ORDER = "INSERT INTO jc_student_order(" +
             " student_order_status, student_order_date, h_first_name," +
-            " h_second_name, h_patronymic, h_passport_number, h_passport_serial," +
+            " h_second_name, h_patronymic, h_date_of_birth, h_passport_number, h_passport_serial," +
             " h_issue_data_passport, h_issue_department, h_student_number, h_university," +
             " h_city, h_area, h_street, h_building, h_apartment, h_post_code, h_index_street," +
-            " w_first_name, w_second_name, w_patronymic, w_passport_number, w_passport_serial, " +
+            " w_first_name, w_second_name, w_patronymic, w_date_of_birth, w_passport_number, w_passport_serial, " +
             "w_issue_data_passport, w_issue_department, w_student_number, w_university, w_city," +
             " w_area, w_street, w_building, w_apartment, w_post_code, w_index_street, " +
             "marriage_certificate_id, marriage_date, department_marriage)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " +
-            "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
+    //39 insert //
     private Connection getConnection() throws SQLException {
         Connection con = null;
         try {
@@ -38,31 +39,20 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
 
     @Override
     public Long saveStudentOrder(StudentOrder so) throws DaoException {
-        long result = -1L;
+          long result = -1L;
         try (Connection con = getConnection();
              PreparedStatement stmt = con.prepareStatement(INSERT_ORDER, new String[]{"student_order_id"})) {
             stmt.setInt(1, StudentOrderStatus.START.ordinal());
-            stmt.setTimestamp(2, java.sql.Timestamp.valueOf(LocalDateTime.now()));
+            stmt.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
 
-            Adult husband = so.getHusband();
-            setParamsAdult(stmt, 3, husband);
+            setParamsForAdult(stmt,3, so.getHusband());
+            setParamsForAdult(stmt,20 , so.getWife());
 
-            Address hAddress = husband.getAdress();
-            setParamsAddress(stmt, 12, hAddress);
+            stmt.setString(37, so.getMarriageCertificateId());
+            stmt.setDate(38, Date.valueOf(so.getMarriageDate()));
+            stmt.setLong(39, so.getDepartmentMarriage().getRegisterId());
 
-            Adult wife = so.getWife();
-            setParamsAdult(stmt, 19, wife);
-
-            Address wAddress = wife.getAdress();
-            setParamsAddress(stmt,28,wAddress);
-
-            stmt.setString(35, so.getMarriageCertificateId());
-            stmt.setDate(36, java.sql.Date.valueOf(so.getMarriageDate()));
-            stmt.setLong(37, so.getDepartmentMarriage().getRegisterId());
-
-
-            stmt.executeUpdate();
-
+       stmt.executeUpdate();
             ResultSet generatedKeys = stmt.getGeneratedKeys();
             if (generatedKeys.next()) {
                 result = generatedKeys.getLong(1);
@@ -71,29 +61,36 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
             throw new DaoException(e);
 
         }
-        return result;
+     return result;
+ }
+
+    private static void setParamsForAdult(PreparedStatement stmt, int start, Adult adult) throws SQLException {
+        setParamsForPerson(stmt, start, adult);
+        stmt.setString(start + 4, adult.getPassportNumber());
+        stmt.setString(start + 5, adult.getPassportSerial());
+        stmt.setDate(start + 6, Date.valueOf(adult.getIssueDatePassport()));
+        stmt.setLong(start + 7, adult.getIssueDepartment().getpOfficeId());
+        stmt.setString(start + 8, adult.getStudentNumber());
+        stmt.setString(start + 9, adult.getUniversity());
+        setParamsForAddress(stmt, start + 10 , adult);
     }
 
-
-    private static void setParamsAddress(PreparedStatement stmt, int start, Address address) throws SQLException {
-        stmt.setString(start, address.getCity());
-        stmt.setString(start + 9, address.getArea());
-        stmt.setString(start + 10, address.getStreet().getStreet_name());
-        stmt.setString(start + 11, address.getBuilding());
-        stmt.setString(start + 12, address.getApartment());
-        stmt.setString(start + 13, address.getPostcode());
-        stmt.setLong(start + 14, address.getStreet().getStreet_code());
+    private static void setParamsForAddress(PreparedStatement stmt, int start, Person person) throws SQLException {
+        Address adult_address = person.getAddress();
+        stmt.setString(start, adult_address.getCity());
+        stmt.setString(start + 1, adult_address.getStreet().getStreet_area());
+        stmt.setString(start + 2, adult_address.getStreet().getStreet_name());
+        stmt.setString(start + 3, adult_address.getBuilding());
+        stmt.setString(start + 4, adult_address.getApartment());
+        stmt.setString(start + 5, adult_address.getPostcode());
+        stmt.setInt(start + 6, adult_address.getStreet().getStreet_code());
     }
 
-    private static void setParamsAdult(PreparedStatement stmt, int start, Adult adult) throws SQLException {
-        stmt.setString(start, adult.getFirstName());
-        stmt.setString(start + 1, adult.getSecondName());
-        stmt.setString(start + 2, adult.getPatronymic());
-        stmt.setString(start + 3, adult.getPassportNumber());
-        stmt.setString(start + 4, adult.getPassportSerial());
-        stmt.setDate(start + 5, Date.valueOf(adult.getIssueDatePassport()));
-        stmt.setLong(start + 6, adult.getIssueDepartment().getpOfficeId());
-        stmt.setString(start + 7, adult.getStudentNumber());
-        stmt.setString(start + 8, adult.getUniversity());
+    private static void setParamsForPerson(PreparedStatement stmt, int start, Person person) throws SQLException {
+        stmt.setString(start, person.getFirstName());
+        stmt.setString(start + 1, person.getSecondName());
+        stmt.setString(start + 2, person.getPatronymic());
+        stmt.setDate(start + 3, Date.valueOf(person.getDateOfBirth()));
     }
 }
+

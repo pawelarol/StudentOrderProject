@@ -46,7 +46,7 @@ public class DictionaryDaoImpl implements DictionaryInterface {
            stmt.setString(1, "%" + pattern + "%");
            ResultSet rs = stmt.executeQuery();
            while (rs.next()) {
-               Street str = new Street(rs.getLong("street_code"),
+               Street str = new Street(rs.getInt("street_code"),
                        rs.getString("street_name"),
                        rs.getString("street_area"));
                result.add(str);

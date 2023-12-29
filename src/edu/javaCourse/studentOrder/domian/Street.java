@@ -1,7 +1,7 @@
 package edu.javaCourse.studentOrder.domian;
 
 public class Street {
-    private long street_code;
+    private int street_code;
     private String street_name;
     private String street_area;
 
@@ -10,7 +10,7 @@ public class Street {
 
     }
 
-    public Street(long street_code, String street_name, String street_area) {
+    public Street(int street_code, String street_name, String street_area) {
         this.street_code = street_code;
         this.street_name = street_name;
         this.street_area = street_area;
@@ -24,11 +24,11 @@ public class Street {
         this.street_area = street_area;
     }
 
-    public long getStreet_code() {
+    public int getStreet_code() {
         return street_code;
     }
 
-    public void setStreet_code(long street_code) {
+    public void setStreet_code(int street_code) {
         this.street_code = street_code;
     }
 
