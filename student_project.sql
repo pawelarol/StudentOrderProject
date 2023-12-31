@@ -9,7 +9,8 @@ DROP TABLE IF EXISTS jc_country_struct;
 CREATE TABLE jc_street(
  street_code integer not null,
 	street_name varchar(20),
-	street_area varchar(20)
+	street_area varchar(20),
+	PRIMARY KEY (street_code)
 );
 
 CREATE TABLE jc_country_struct(
@@ -53,7 +54,7 @@ h_area varchar(12),
 h_street varchar(100),
 h_building varchar(12),
 h_apartment varchar(12),
-h_post_code integer not null,
+h_post_code varchar(12),
 h_index_street integer not null,
 w_first_name varchar(12),
  w_second_name varchar(12),
@@ -85,6 +86,7 @@ FOREIGN KEY(department_marriage) REFERENCES jc_register_office(r_office_id) ON D
 
     CREATE TABLE jc_child(
 student_child_id SERIAL,
+student_order_id integer not null,
  c_first_name varchar(12),
  c_second_name varchar(12),
  c_patronymic varchar(12),
@@ -97,13 +99,15 @@ student_child_id SERIAL,
  c_street varchar(100),
  c_building varchar(100),
  c_apartment varchar (100),
- c_post_code integer not null,
- c_certificate_number integer not null,
+ c_post_code varchar(12),
+ c_index_street integer not null,
+ c_certificate_number varchar (12),
  c_issue_date_certificate date not null,
  c_issue_department integer not null,
 
 PRIMARY KEY(student_child_id),
-FOREIGN KEY(c_post_code) REFERENCES jc_street(street_code) ON DELETE RESTRICT,
+FOREIGN KEY(student_order_id) REFERENCES jc_student_order(student_order_id) ON DELETE RESTRICT,
+FOREIGN KEY(c_index_street) REFERENCES jc_street(street_code) ON DELETE RESTRICT,
 FOREIGN KEY(c_issue_department) REFERENCES jc_register_office(r_office_id) ON DELETE RESTRICT
 );
 INSERT INTO jc_street(street_code, street_name) VALUES

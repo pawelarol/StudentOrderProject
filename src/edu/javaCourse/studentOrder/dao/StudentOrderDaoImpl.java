@@ -22,6 +22,14 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " +
             "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
+    private static final String INSERT_CHILD = "INSERT INTO jc_child(" +
+            "student_order_id, c_first_name, c_second_name, c_patronymic," +
+            " c_date_of_birth, c_passport_number, c_passport_serial," +
+            " c_issue_data_passport, c_city, c_area, c_street, c_building," +
+            " c_apartment, c_post_code, c_index_street, c_certificate_number," +
+            " c_issue_date_certificate, c_issue_department)" +
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
     //39 insert //
     private Connection getConnection() throws SQLException {
         Connection con = null;
@@ -57,12 +65,36 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
             if (generatedKeys.next()) {
                 result = generatedKeys.getLong(1);
             }
+
+            saveChildren(con, so, result);
         } catch (SQLException e) {
             throw new DaoException(e);
 
         }
      return result;
  }
+
+    private void saveChildren(Connection con, StudentOrder so, long childID) throws SQLException{
+        try(PreparedStatement stmt = con.prepareStatement(INSERT_CHILD)){
+            for(Child child : so.getChildren()){
+                  stmt.setLong(1,childID);
+               setParamsForChild(stmt,child);
+               stmt.executeUpdate();
+            }
+        }
+    }
+
+    private void setParamsForChild(PreparedStatement stmt, Child child) throws SQLException {
+        setParamsForPerson(stmt, 2 , child);
+        stmt.setString( 6, child.getPassportNumber());
+        stmt.setString( 7, child.getPassportSerial());
+        stmt.setDate( 8, Date.valueOf(child.getIssueDatePassport()));
+        setParamsForAddress(stmt, 9, child);
+        stmt.setString(16, child.getCertificateNumber());
+        stmt.setDate(17, Date.valueOf(child.getIssueDatePassport()));
+        stmt.setLong(18, child.getIssueDepartment().getpOfficeId());
+
+    }
 
     private static void setParamsForAdult(PreparedStatement stmt, int start, Adult adult) throws SQLException {
         setParamsForPerson(stmt, start, adult);
