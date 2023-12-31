@@ -26,7 +26,7 @@ public class CheckCityRegister {
    public AnswerCityRegister checkCityRegister(StudentOrder studentOrder) {
        AnswerCityRegister answerCityRegister = new AnswerCityRegister();
        answerCityRegister.addItem(checkPerson(studentOrder.getHusband()));
-       answerCityRegister.addItem(checkPerson(studentOrder.getWave()));
+       answerCityRegister.addItem(checkPerson(studentOrder.getWife()));
        List<Child> childList = studentOrder.getChildren();
        for (Child child : childList) {
            answerCityRegister.addItem(checkPerson(child));

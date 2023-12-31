@@ -2,20 +2,37 @@ package edu.javaCourse.studentOrder.domian;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StudentOrder {
 
     private long studentOrderId;
+    private StudentOrderStatus studentOrderStatus;
+    private LocalDateTime dateOfApplication;
     private Adult husband;
-    private Adult wave;
+    private Adult wife;
     private List<Child> children;
     private RegisterOffice departmentMarriage;
     private String marriageCertificateId;
     private LocalDate marriageDate;
 
+    public StudentOrderStatus getStudentOrderStatus() {
+        return studentOrderStatus;
+    }
 
+    public void setStudentOrderStatus(StudentOrderStatus studentOrderStatus) {
+        this.studentOrderStatus = studentOrderStatus;
+    }
+
+    public LocalDateTime getDateOfApplication() {
+        return dateOfApplication;
+    }
+
+    public void setDateOfApplication(LocalDateTime dateOfApplication) {
+        this.dateOfApplication = dateOfApplication;
+    }
 
     public RegisterOffice getDepartmentMarriage() {
         return departmentMarriage;
@@ -57,12 +74,12 @@ public class StudentOrder {
         this.husband = husband;
     }
 
-    public Adult getWave() {
-        return wave;
+    public Adult getWife() {
+        return wife;
     }
 
-    public void setWave(Adult wave) {
-        this.wave = wave;
+    public void setWife(Adult wife) {
+        this.wife = wife;
     }
 
     public List<Child> getChildren() {
@@ -81,8 +98,9 @@ public class StudentOrder {
         return "StudentOrder{" +
                 "studentOrderId=" + studentOrderId +
                 ", husband=" + husband +
-                ", wave=" + wave +
+                ", wave=" + wife +
                 ", children=" + children +
                 '}';
     }
+
 }

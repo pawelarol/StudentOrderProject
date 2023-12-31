@@ -127,6 +127,6 @@ public class DictionaryDaoImpl implements DictionaryInterface {
         }else if(areaId.endsWith("0000")) {
             return areaId.substring(0, 8) + "____";
         }
-        throw new SQLException("Invalid parametr 'area_id" + areaId);
+        throw new SQLException("Invalid param 'area_id'" + areaId);
     }
 }
