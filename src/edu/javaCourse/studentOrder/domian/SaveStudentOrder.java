@@ -17,6 +17,9 @@ public class SaveStudentOrder {
         StudentOrderDaoImpl dao = new StudentOrderDaoImpl();
         Long l = dao.saveStudentOrder(so);
         System.out.println(l);
+        List<StudentOrder> ordersList = dao.getStudentOrders();
+        for(StudentOrder s : ordersList)
+            System.out.println(s.getStudentOrderId());
 
     }
 

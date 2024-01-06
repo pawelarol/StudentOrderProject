@@ -6,7 +6,10 @@ import edu.javaCourse.studentOrder.config.Config;
 import edu.javaCourse.studentOrder.domian.*;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.LinkedList;
+import java.util.List;
 
 public class StudentOrderDaoImpl implements StudentOrderDao {
 
@@ -42,7 +45,9 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
             " c_issue_date_certificate, c_issue_department)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
-    //39 insert //
+    private static final String SELECT_ORDERS = "SELECT * FROM jc_student_order " +
+            "WHERE student_order_status = 0 ORDER BY student_order_date";
+
     private Connection getConnection() throws SQLException {
         Connection con = null;
         try {
@@ -84,6 +89,40 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
 
         }
         return result;
+    }
+
+    @Override
+    public List<StudentOrder> getStudentOrders() throws DaoException {
+        List<StudentOrder> result = new LinkedList<>();
+        try(Connection con = getConnection();
+        PreparedStatement stmt = con.prepareStatement(SELECT_ORDERS)){
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                StudentOrder so = new StudentOrder();
+                fillStudentOrder(so, rs);
+                fillWedding(so,rs);
+                result.add(so);
+            }
+            rs.close();
+        }catch (SQLException ex){
+            throw new DaoException(ex);
+        }
+        return result;
+    }
+
+    private void fillWedding(StudentOrder so, ResultSet rs) throws SQLException{
+        so.setMarriageCertificateId(rs.getString("marriage_certificate_id"));
+        so.setMarriageDate(rs.getDate("marriage_date").toLocalDate());
+
+        Long roID = rs.getLong("department_marriage");
+        RegisterOffice ro = new RegisterOffice(roID,"", "");
+        so.setDepartmentMarriage(ro);
+    }
+
+    private static void fillStudentOrder(StudentOrder so, ResultSet rs) throws SQLException {
+        so.setStudentOrderId(rs.getLong("student_order_id"));
+        so.setDateOfApplication(rs.getTimestamp("student_order_date").toLocalDateTime());
+        so.setStudentOrderStatus(StudentOrderStatus.getStatus(rs.getInt("student_order_status")));
     }
 
     private void saveChildren(Connection con, StudentOrder so, long childID) throws SQLException {
