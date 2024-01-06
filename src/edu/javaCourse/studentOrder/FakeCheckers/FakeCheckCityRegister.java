@@ -29,7 +29,7 @@ public class FakeCheckCityRegister implements CheckOnePerson {
             String passportSeria = adultObject.getPassportSerial();
             if (passportSeria.equals(GOOD_W) || passportSeria.equals(GOOD_H)) {
                 // System.out.println("passport checkPerson" + passportSeria);
-                responce.setStatusResident(false);
+                responce.setStatusResident(true);
                 responce.setExists(true);
             }
 

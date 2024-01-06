@@ -10,17 +10,29 @@ import java.time.LocalDateTime;
 
 public class StudentOrderDaoImpl implements StudentOrderDao {
 
-    private static final String INSERT_ORDER = "INSERT INTO jc_student_order(" +
-            " student_order_status, student_order_date, h_first_name," +
-            " h_second_name, h_patronymic, h_date_of_birth, h_passport_number, h_passport_serial," +
-            " h_issue_data_passport, h_issue_department, h_student_number, h_university," +
-            " h_city, h_area, h_street, h_building, h_apartment, h_post_code, h_index_street," +
-            " w_first_name, w_second_name, w_patronymic, w_date_of_birth, w_passport_number, w_passport_serial, " +
-            "w_issue_data_passport, w_issue_department, w_student_number, w_university, w_city," +
-            " w_area, w_street, w_building, w_apartment, w_post_code, w_index_street, " +
-            "marriage_certificate_id, marriage_date, department_marriage)" +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " +
-            "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    private static final String INSERT_ORDER = "INSERT INTO public.jc_student_order(" +
+            "student_order_status, student_order_date, h_first_name," +
+            " h_second_name, h_patronymic, h_date_of_birth, h_passport_number," +
+            " h_passport_serial, h_issue_data_passport, h_issue_department," +
+            " h_student_number, h_university_id, h_city," +
+            " h_area, h_street, h_building, h_apartment, h_post_code, " +
+            "h_index_street, w_first_name, w_second_name, w_patronymic," +
+            " w_date_of_birth, w_passport_number, w_passport_serial," +
+            " w_issue_data_passport, w_issue_department, w_student_number," +
+            " w_university_id, w_city, w_area, w_street," +
+            " w_building, w_apartment, w_post_code, w_index_street," +
+            " marriage_certificate_id, marriage_date, department_marriage)" +
+            "VALUES (?, ?, ?," +
+            " ?, ?, ?, ?, " +
+            "?, ?, ?," +
+            " ?, ?, ?," +
+            " ?, ?, ?, ?, ?," +
+            " ?, ?, ?, ?," +
+            " ?, ?, ?," +
+            " ?, ?, ?, " +
+            "?, ?, ?, ?," +
+            " ?, ?, ?, ?, " +
+            "?, ?, ?);";
 
     private static final String INSERT_CHILD = "INSERT INTO jc_child(" +
             "student_order_id, c_first_name, c_second_name, c_patronymic," +
@@ -113,7 +125,7 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
         stmt.setDate(start + 6, Date.valueOf(adult.getIssueDatePassport()));
         stmt.setLong(start + 7, adult.getIssueDepartment().getpOfficeId());
         stmt.setString(start + 8, adult.getStudentNumber());
-        stmt.setString(start + 9, adult.getUniversity());
+        stmt.setLong(start + 9, adult.getUniversity().getUniversityId());
         setParamsForAddress(stmt, start + 10, adult);
     }
 

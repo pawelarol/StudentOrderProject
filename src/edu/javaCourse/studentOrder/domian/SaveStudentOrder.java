@@ -33,8 +33,8 @@ public class SaveStudentOrder {
         husband.setPassportSerial("" + (1000 + id));
         husband.setPassportNumber("" + (100000 + id));
         husband.setIssueDatePassport(LocalDate.of(2023, 6, 30));
-        husband.setStudentNumber("" + (1000000 + id));
-        husband.setUniversity("GGPEK");
+        husband.setStudentNumber("HH1231112");
+        husband.setUniversity(new University(1L,""));
         RegisterOffice ro = new RegisterOffice(1L, "", "");
         so.setDepartmentMarriage(ro);
         so.setMarriageCertificateId("" + (10000000 + id));
@@ -47,8 +47,8 @@ public class SaveStudentOrder {
         wife.setPassportSerial("" + (2000 + id));
         wife.setPassportNumber("" + (20000 + id));
         wife.setIssueDatePassport(LocalDate.of(2023, 3, 1));
-        wife.setStudentNumber("" + (200000 + id));
-        wife.setUniversity("Polski-Japonski");
+        wife.setStudentNumber("WW1233122");
+        wife.setUniversity(new University(2L,""));
         RegisterOffice ro1 = new RegisterOffice(1L, "", "");
         so.setDepartmentMarriage(ro1);
         so.setMarriageCertificateId("" + (20000002 + id));
