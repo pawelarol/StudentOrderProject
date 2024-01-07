@@ -45,10 +45,16 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
     private static final String SELECT_ORDERS =
-            "SELECT ro.r_office_area_id, ro.r_office_name, so. *" +
-            "FROM jc_student_order so " +
-            "INNER JOIN jc_register_office ro ON ro.r_office_id = so.department_marriage " +
-            "WHERE student_order_status = 0 ORDER BY student_order_date ";
+            "SELECT ro.r_office_area_id, ro.r_office_name, " +
+                    " po_h.p_office_area_id AS h_p_office_area_id, " +
+                    " po_h.p_office_name AS h_p_office_name, " +
+                    " po_w.p_office_area_id AS w_p_office_area_id, " +
+                    " po_w.p_office_name AS w_p_office_name, " +
+                    " so. * FROM jc_student_order so " +
+                    "INNER JOIN jc_register_office ro ON ro.r_office_id = so.department_marriage " +
+                    "INNER JOIN jc_passport_office po_h ON po_h.p_office_id = so.h_issue_department " +
+                    "INNER JOIN jc_passport_office po_w ON po_w.p_office_id = so.w_issue_department " +
+                    "WHERE so.student_order_status = 0 ORDER BY so.student_order_date; ";
 
     private Connection getConnection() throws SQLException {
         Connection con = null;
@@ -127,8 +133,11 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
         adult.setPassportSerial(rs.getString(prefix + "passport_serial"));
         adult.setIssueDatePassport(rs.getDate(prefix + "issue_data_passport").toLocalDate());
 
-        PassportOffice ro = new PassportOffice(1L, "", "");
-        ro.getpOfficeId();
+        //TODO Разобраться почему не находит p_office_id
+        //Long poId = rs.getLong(prefix + "p_office_id");
+        String areaId = rs.getString(prefix + "p_office_area_id");
+        String area_name = rs.getString(prefix + "p_office_name");
+        PassportOffice ro = new PassportOffice(1L, areaId , area_name);
         adult.setIssueDepartment(ro);
 
         University un = new University(1L, "");
