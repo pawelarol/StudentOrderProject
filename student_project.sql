@@ -57,7 +57,6 @@ CREATE TABLE jc_student_order(
 h_student_number varchar(12),
 h_university_id integer not null,
 h_city varchar(12),
-h_area varchar(12),
 h_street varchar(100),
 h_building varchar(12),
 h_apartment varchar(12),

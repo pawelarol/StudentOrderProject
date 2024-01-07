@@ -21,6 +21,10 @@ public class Person {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public Person() {
+
+    }
+
     public Address getAddress() {
         return address;
     }

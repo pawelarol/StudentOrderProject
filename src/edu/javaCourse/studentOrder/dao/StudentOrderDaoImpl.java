@@ -6,7 +6,6 @@ import edu.javaCourse.studentOrder.config.Config;
 import edu.javaCourse.studentOrder.domian.*;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
@@ -101,6 +100,10 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
                 StudentOrder so = new StudentOrder();
                 fillStudentOrder(so, rs);
                 fillWedding(so,rs);
+               Adult husband =  fillAdult(rs, "h_");
+                Adult wife = fillAdult(rs,"w_");
+                so.setHusband(husband);
+                so.setWife(wife);
                 result.add(so);
             }
             rs.close();
@@ -108,6 +111,35 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
             throw new DaoException(ex);
         }
         return result;
+    }
+
+    private Adult fillAdult(ResultSet rs, String prefix) throws SQLException {
+         Adult adult = new Adult();
+         adult.setFirstName(rs.getString(prefix + "first_name"));
+        adult.setSecondName(rs.getString(prefix + "second_name"));
+        adult.setPatronymic(rs.getString(prefix + "patronymic"));
+        adult.setFirstName(rs.getString(prefix + "first_name"));
+        adult.setDateOfBirth(rs.getDate(prefix + "date_of_birth").toLocalDate());
+        adult.setPassportNumber(rs.getString(prefix + "passport_number"));
+        adult.setPassportSerial(rs.getString(prefix + "passport_serial"));
+        adult.setIssueDatePassport(rs.getDate(prefix + "issue_data_passport").toLocalDate());
+
+        PassportOffice ro = new PassportOffice(1L, "", "");
+        ro.getpOfficeId();
+        adult.setIssueDepartment(ro);
+
+        University un = new University(1L, "");
+        adult.setStudentNumber(rs.getString(prefix + "student_number"));
+        adult.setUniversity(un);
+
+        Address address = new Address();
+        Street str = new Street();
+        address.setCity(prefix + "city");
+        address.setStreet(str);
+        address.setBuilding(rs.getString(prefix + "building"));
+        address.setApartment(rs.getString(prefix + "apartment"));
+        address.setPostcode(rs.getString(prefix + "post_code"));
+        return adult;
     }
 
     private void fillWedding(StudentOrder so, ResultSet rs) throws SQLException{

@@ -6,6 +6,11 @@ public class Adult extends Person{
     private University university;
     private String studentNumber;
 
+    public Adult() {
+        super();
+
+    }
+
     public Adult(String firstName, String secondName, String patronymic, LocalDate dateOfBirth){
     super (firstName, secondName, patronymic, dateOfBirth);
     }
