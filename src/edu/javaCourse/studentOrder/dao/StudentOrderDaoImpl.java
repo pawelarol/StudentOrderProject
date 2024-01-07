@@ -44,8 +44,11 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
             " c_issue_date_certificate, c_issue_department)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
-    private static final String SELECT_ORDERS = "SELECT * FROM jc_student_order " +
-            "WHERE student_order_status = 0 ORDER BY student_order_date";
+    private static final String SELECT_ORDERS =
+            "SELECT ro.r_office_area_id, ro.r_office_name, so. *" +
+            "FROM jc_student_order so " +
+            "INNER JOIN jc_register_office ro ON ro.r_office_id = so.department_marriage " +
+            "WHERE student_order_status = 0 ORDER BY student_order_date ";
 
     private Connection getConnection() throws SQLException {
         Connection con = null;
@@ -147,7 +150,9 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
         so.setMarriageDate(rs.getDate("marriage_date").toLocalDate());
 
         Long roID = rs.getLong("department_marriage");
-        RegisterOffice ro = new RegisterOffice(roID,"", "");
+        String areaID = rs.getString("r_office_area_id");
+        String area_name = rs.getString("r_office_name");
+        RegisterOffice ro = new RegisterOffice(roID,areaID, area_name);
         so.setDepartmentMarriage(ro);
     }
 
