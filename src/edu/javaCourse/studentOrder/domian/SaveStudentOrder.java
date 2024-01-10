@@ -13,10 +13,10 @@ public class SaveStudentOrder {
         // searchStreet();
         //searchCountry();
         //searchRegister();
-      //  StudentOrder so = buildStudentOrder(10);
+     StudentOrder so = buildStudentOrder(10);
         StudentOrderDaoImpl dao = new StudentOrderDaoImpl();
-        //Long l = dao.saveStudentOrder(so);
-        //System.out.println(l);
+      Long l = dao.saveStudentOrder(so);
+        System.out.println(l);
         List<StudentOrder> ordersList = dao.getStudentOrders();
         for(StudentOrder s : ordersList)
             System.out.println(s.getStudentOrderId());
@@ -59,14 +59,16 @@ public class SaveStudentOrder {
         wife.setAddress(address);
 
         Child child = new Child("Arol", "Oleg", "Pavlovich", LocalDate.of(2020, 4, 1));
+        PassportOffice po2 = new PassportOffice(1L, "", "");
+        RegisterOffice roChild = new RegisterOffice(2L, "", "");
         child.setPassportSerial("" + (3000 + id));
         child.setPassportNumber("" + (300000 + id));
         child.setIssueDatePassport(LocalDate.of(2023, 1, 3));
-        PassportOffice po2 = new PassportOffice(1L, "", "");
         child.setIssueDepartment(po2);
         child.setCertificateNumber("" + (30 + id));
         child.setIssueDate(LocalDate.of(2020, 4, 1));
         child.setAddress(address);
+        child.setRegisterDepartment(roChild);
 
         Child child1 = new Child("Arol", "Victor", "Pavlovich", LocalDate.of(2020, 4, 1));
         child1.setPassportSerial("" + (4000 + id));
@@ -76,6 +78,7 @@ public class SaveStudentOrder {
         child1.setCertificateNumber("" + (30 + id));
         child1.setIssueDate(LocalDate.of(2020, 4, 1));
         child1.setAddress(address);
+        child1.setRegisterDepartment(roChild);
 
         so.setStudentOrderId(id);
         so.setHusband(husband);

@@ -16,7 +16,7 @@ CREATE TABLE jc_street(
 
 CREATE TABLE jc_university(
  university_id integer not null,
-	university_name varchar(20),
+	university_name varchar(50),
 	PRIMARY KEY (university_id)
 );
 
@@ -57,6 +57,7 @@ CREATE TABLE jc_student_order(
 h_student_number varchar(12),
 h_university_id integer not null,
 h_city varchar(12),
+h_area varchar(12),
 h_street varchar(100),
 h_building varchar(12),
 h_apartment varchar(12),
@@ -112,8 +113,10 @@ student_order_id integer not null,
  c_certificate_number varchar (12),
  c_issue_date_certificate date not null,
  c_issue_department integer not null,
+ c_register_office integer not null,
 
 PRIMARY KEY(student_child_id),
+FOREIGN KEY (c_register_office) REFERENCES jc_register_office(r_office_id) ON DELETE RESTRICT,
 FOREIGN KEY(student_order_id) REFERENCES jc_student_order(student_order_id) ON DELETE RESTRICT,
 FOREIGN KEY(c_index_street) REFERENCES jc_street(street_code) ON DELETE RESTRICT,
 FOREIGN KEY(c_issue_department) REFERENCES jc_register_office(r_office_id) ON DELETE RESTRICT

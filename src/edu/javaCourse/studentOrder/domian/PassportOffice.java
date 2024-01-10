@@ -1,7 +1,7 @@
 package edu.javaCourse.studentOrder.domian;
 
 public class PassportOffice {
-    private long pOfficeId;
+    private Long pOfficeId;
     private String pOfficeAreaId;
     private String pOfficeName;
 
