@@ -13,14 +13,15 @@ public class SaveStudentOrder {
         // searchStreet();
         //searchCountry();
         //searchRegister();
-     StudentOrder so = buildStudentOrder(10);
+        //   StudentOrder so = buildStudentOrder(10);
         StudentOrderDaoImpl dao = new StudentOrderDaoImpl();
-      Long l = dao.saveStudentOrder(so);
-        System.out.println(l);
+        //  Long l = dao.saveStudentOrder(so);
+        //System.out.println(l);
         List<StudentOrder> ordersList = dao.getStudentOrders();
-        for(StudentOrder s : ordersList)
-            System.out.println(s.getStudentOrderId());
+        for (StudentOrder s : ordersList) {
+                 System.out.println(s.getStudentOrderId());
 
+        }
     }
 
     public static StudentOrder buildStudentOrder(long id) {
