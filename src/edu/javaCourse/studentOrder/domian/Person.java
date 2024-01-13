@@ -11,6 +11,7 @@ public class Person {
     private String passportSerial;
     private LocalDate issueDatePassport;
     private PassportOffice issueDepartment;
+    private RegisterOffice registerDepartment;
     private Address address;
 
 
@@ -19,6 +20,10 @@ public class Person {
         this.secondName = secondName;
         this.patronymic = patronymic;
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public Person() {
+
     }
 
     public Address getAddress() {
@@ -93,4 +98,11 @@ public class Person {
         this.passportNumber = passportNumber;
     }
 
+    public RegisterOffice getRegisterDepartment() {
+        return registerDepartment;
+    }
+
+    public void setRegisterDepartment(RegisterOffice registerDepartment) {
+        this.registerDepartment = registerDepartment;
+    }
 }

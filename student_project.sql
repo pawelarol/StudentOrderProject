@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS jc_student_order;
 DROP TABLE IF EXISTS jc_register_office;
 DROP TABLE IF EXISTS jc_passport_office;
 DROP TABLE IF EXISTS jc_street;
+DROP TABLE IF EXISTS jc_university;
 DROP TABLE IF EXISTS jc_country_struct;
 
 CREATE TABLE jc_street(
@@ -11,6 +12,12 @@ CREATE TABLE jc_street(
 	street_name varchar(20),
 	street_area varchar(20),
 	PRIMARY KEY (street_code)
+);
+
+CREATE TABLE jc_university(
+ university_id integer not null,
+	university_name varchar(50),
+	PRIMARY KEY (university_id)
 );
 
 CREATE TABLE jc_country_struct(
@@ -48,7 +55,7 @@ CREATE TABLE jc_student_order(
  h_issue_data_passport date not null,
  h_issue_department integer not null,
 h_student_number varchar(12),
-h_university varchar(12),
+h_university_id integer not null,
 h_city varchar(12),
 h_area varchar(12),
 h_street varchar(100),
@@ -65,7 +72,7 @@ w_first_name varchar(12),
  w_issue_data_passport date not null,
  w_issue_department integer not null,
 w_student_number varchar(12),
-w_university varchar(100),
+w_university_id integer not null,
 w_city varchar(12),
 w_area varchar(12),
 w_street varchar(100),
@@ -81,6 +88,8 @@ FOREIGN KEY(h_index_street) REFERENCES jc_street(street_code) ON DELETE RESTRICT
 FOREIGN KEY(w_index_street) REFERENCES jc_street(street_code) ON DELETE RESTRICT,
 FOREIGN KEY(h_issue_department) REFERENCES jc_register_office(r_office_id) ON DELETE RESTRICT,
 FOREIGN KEY(w_issue_department) REFERENCES jc_register_office(r_office_id) ON DELETE RESTRICT,
+FOREIGN KEY(h_university_id) REFERENCES jc_university(university_id) ON DELETE RESTRICT,
+FOREIGN KEY(w_university_id) REFERENCES jc_university(university_id) ON DELETE RESTRICT,
 FOREIGN KEY(department_marriage) REFERENCES jc_register_office(r_office_id) ON DELETE RESTRICT
 );
 
@@ -104,18 +113,28 @@ student_order_id integer not null,
  c_certificate_number varchar (12),
  c_issue_date_certificate date not null,
  c_issue_department integer not null,
+ c_register_office integer not null,
 
 PRIMARY KEY(student_child_id),
+FOREIGN KEY (c_register_office) REFERENCES jc_register_office(r_office_id) ON DELETE RESTRICT,
 FOREIGN KEY(student_order_id) REFERENCES jc_student_order(student_order_id) ON DELETE RESTRICT,
 FOREIGN KEY(c_index_street) REFERENCES jc_street(street_code) ON DELETE RESTRICT,
 FOREIGN KEY(c_issue_department) REFERENCES jc_register_office(r_office_id) ON DELETE RESTRICT
 );
+
+CREATE INDEX idx_student_order_status ON jc_student_order(student_order_status);
+CREATE INDEX idx_student_order_id ON jc_child(student_order_id);
 INSERT INTO jc_street(street_code, street_name) VALUES
 (1, 'Main Street'),
 (2, 'Oak Avenue'),
 (3, 'Maple Lane'),
 (4, 'Broadway'),
 (5, 'Chestnut Street');
+
+INSERT INTO jc_university (university_id, university_name) VALUES
+    (1, 'University of Warsaw'),
+    (2, 'Warsaw University of Technology'),
+    (3, 'Medical University of Warsaw');
 
 INSERT INTO jc_country_struct(area_id, area_name) VALUES
 ('010000000000', 'Poland'),

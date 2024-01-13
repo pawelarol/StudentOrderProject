@@ -13,11 +13,15 @@ public class SaveStudentOrder {
         // searchStreet();
         //searchCountry();
         //searchRegister();
-        StudentOrder so = buildStudentOrder(10);
+        //   StudentOrder so = buildStudentOrder(10);
         StudentOrderDaoImpl dao = new StudentOrderDaoImpl();
-        Long l = dao.saveStudentOrder(so);
-        System.out.println(l);
+        //  Long l = dao.saveStudentOrder(so);
+        //System.out.println(l);
+        List<StudentOrder> ordersList = dao.getStudentOrders();
+        for (StudentOrder s : ordersList) {
+                 System.out.println(s.getStudentOrderId());
 
+        }
     }
 
     public static StudentOrder buildStudentOrder(long id) {
@@ -33,8 +37,8 @@ public class SaveStudentOrder {
         husband.setPassportSerial("" + (1000 + id));
         husband.setPassportNumber("" + (100000 + id));
         husband.setIssueDatePassport(LocalDate.of(2023, 6, 30));
-        husband.setStudentNumber("" + (1000000 + id));
-        husband.setUniversity("GGPEK");
+        husband.setStudentNumber("HH1231112");
+        husband.setUniversity(new University(1L,""));
         RegisterOffice ro = new RegisterOffice(1L, "", "");
         so.setDepartmentMarriage(ro);
         so.setMarriageCertificateId("" + (10000000 + id));
@@ -47,8 +51,8 @@ public class SaveStudentOrder {
         wife.setPassportSerial("" + (2000 + id));
         wife.setPassportNumber("" + (20000 + id));
         wife.setIssueDatePassport(LocalDate.of(2023, 3, 1));
-        wife.setStudentNumber("" + (200000 + id));
-        wife.setUniversity("Polski-Japonski");
+        wife.setStudentNumber("WW1233122");
+        wife.setUniversity(new University(2L,""));
         RegisterOffice ro1 = new RegisterOffice(1L, "", "");
         so.setDepartmentMarriage(ro1);
         so.setMarriageCertificateId("" + (20000002 + id));
@@ -56,14 +60,16 @@ public class SaveStudentOrder {
         wife.setAddress(address);
 
         Child child = new Child("Arol", "Oleg", "Pavlovich", LocalDate.of(2020, 4, 1));
+        PassportOffice po2 = new PassportOffice(1L, "", "");
+        RegisterOffice roChild = new RegisterOffice(2L, "", "");
         child.setPassportSerial("" + (3000 + id));
         child.setPassportNumber("" + (300000 + id));
         child.setIssueDatePassport(LocalDate.of(2023, 1, 3));
-        PassportOffice po2 = new PassportOffice(1L, "", "");
         child.setIssueDepartment(po2);
         child.setCertificateNumber("" + (30 + id));
         child.setIssueDate(LocalDate.of(2020, 4, 1));
         child.setAddress(address);
+        child.setRegisterDepartment(roChild);
 
         Child child1 = new Child("Arol", "Victor", "Pavlovich", LocalDate.of(2020, 4, 1));
         child1.setPassportSerial("" + (4000 + id));
@@ -73,6 +79,7 @@ public class SaveStudentOrder {
         child1.setCertificateNumber("" + (30 + id));
         child1.setIssueDate(LocalDate.of(2020, 4, 1));
         child1.setAddress(address);
+        child1.setRegisterDepartment(roChild);
 
         so.setStudentOrderId(id);
         so.setHusband(husband);

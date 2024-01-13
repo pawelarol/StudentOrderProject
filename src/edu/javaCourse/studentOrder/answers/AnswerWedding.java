@@ -1,7 +1,7 @@
 package edu.javaCourse.studentOrder.answers;
 
 public class AnswerWedding {
-   private boolean succses;
+   private Boolean succses;
 
     public boolean isSuccses() {
         return succses;
