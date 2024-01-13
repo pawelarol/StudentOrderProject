@@ -121,6 +121,9 @@ FOREIGN KEY(student_order_id) REFERENCES jc_student_order(student_order_id) ON D
 FOREIGN KEY(c_index_street) REFERENCES jc_street(street_code) ON DELETE RESTRICT,
 FOREIGN KEY(c_issue_department) REFERENCES jc_register_office(r_office_id) ON DELETE RESTRICT
 );
+
+CREATE INDEX idx_student_order_status ON jc_student_order(student_order_status);
+CREATE INDEX idx_student_order_id ON jc_child(student_order_id);
 INSERT INTO jc_street(street_code, street_name) VALUES
 (1, 'Main Street'),
 (2, 'Oak Avenue'),
