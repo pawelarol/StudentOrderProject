@@ -8,7 +8,7 @@ public class DictionaryDaoImplTest {
     public void test(){
           System.out.println("TEST");
       }
-
+   //@Test
     public void test2(){
         System.out.println("TEST2");
     }
