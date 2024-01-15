@@ -1,9 +1,6 @@
 package edu.javaCourse.studentOrder.dao;
-
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -25,7 +22,6 @@ public class DictionaryDaoImplTest {
             Statement stmt = con.createStatement()){
             stmt.executeUpdate(sql);
         }
-        System.out.println("TEST STRING");
     }
 
 
