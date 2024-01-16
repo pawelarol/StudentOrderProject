@@ -27,7 +27,8 @@ public class DictionaryDaoImplTest {
 
     @Test
     public void test(){
-        System.out.println("TEST");
+        System.out.println("TEST1");
+        System.out.println("NEW VERSION GIT");
 
     }
 
