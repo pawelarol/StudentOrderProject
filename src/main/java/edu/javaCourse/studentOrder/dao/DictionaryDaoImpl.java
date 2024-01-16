@@ -7,6 +7,7 @@ import edu.javaCourse.studentOrder.domian.CountryStruct;
 import edu.javaCourse.studentOrder.domian.PassportOffice;
 import edu.javaCourse.studentOrder.domian.RegisterOffice;
 import edu.javaCourse.studentOrder.domian.Street;
+import org.postgresql.jdbc.PgConnection;
 
 import java.sql.*;
 import java.util.LinkedList;
@@ -26,18 +27,9 @@ public class DictionaryDaoImpl implements DictionaryInterface {
     private static final String GET_AREA = ("SELECT * FROM" +
             " jc_country_struct WHERE area_id like ? and area_id <> ?");
 
-    private Connection getConnection() throws SQLException {
-        Connection con = null;
-        try {
-            con = DriverManager.getConnection(
-                    Config.getProperties(Config.DB_URL),
-                    Config.getProperties(Config.DB_LOGIN),
-                    Config.getProperties(Config.DB_PASSWORD));
-            return con;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+    public Connection getConnection() throws SQLException {
+       return BuilderConnection.getConnect();
         }
-    }
 
     public List<Street> findStreet(String pattern)  throws DaoException {
         List<Street> result = new LinkedList<>();

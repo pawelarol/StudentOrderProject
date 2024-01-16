@@ -85,16 +85,7 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
                     "ORDER BY so.student_order_date LIMIT ?; ";
 
     private Connection getConnection() throws SQLException {
-        Connection con = null;
-        try {
-            con = DriverManager.getConnection(
-                    Config.getProperties(Config.DB_URL),
-                    Config.getProperties(Config.DB_LOGIN),
-                    Config.getProperties(Config.DB_PASSWORD));
-            return con;
-        } catch (SQLException ex) {
-            throw new RuntimeException();
-        }
+        return BuilderConnection.getConnect();
     }
 
 
