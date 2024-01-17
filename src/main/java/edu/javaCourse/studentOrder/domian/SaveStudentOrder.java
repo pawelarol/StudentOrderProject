@@ -32,7 +32,7 @@ public class SaveStudentOrder {
         Address address = new Address("Warsaw", street, "81", "52", "02-595");
 
         Adult husband = new Adult("Arol", "Pavel", "Sergeevich", LocalDate.of(1998, 7, 12));
-        PassportOffice po = new PassportOffice(1L, "", "");
+        PassportOffice po = new PassportOffice(1L, "010010000000", "");
         husband.setIssueDepartment(po);
         husband.setPassportSerial("" + (1000 + id));
         husband.setPassportNumber("" + (100000 + id));
@@ -46,7 +46,7 @@ public class SaveStudentOrder {
         husband.setAddress(address);
 
         Adult wife = new Adult("Arol", "Anastasia", "Alexandrovna", LocalDate.of(2003, 10, 25));
-        PassportOffice po1 = new PassportOffice(1L, "", "");
+        PassportOffice po1 = new PassportOffice(1L, "010010000000", "");
         wife.setIssueDepartment(po1);
         wife.setPassportSerial("" + (2000 + id));
         wife.setPassportNumber("" + (20000 + id));
@@ -60,7 +60,7 @@ public class SaveStudentOrder {
         wife.setAddress(address);
 
         Child child = new Child("Arol", "Oleg", "Pavlovich", LocalDate.of(2020, 4, 1));
-        PassportOffice po2 = new PassportOffice(1L, "", "");
+        PassportOffice po2 = new PassportOffice(3L, "010020000000", "");
         RegisterOffice roChild = new RegisterOffice(2L, "", "");
         child.setPassportSerial("" + (3000 + id));
         child.setPassportNumber("" + (300000 + id));

@@ -57,7 +57,8 @@ public class DictionaryDaoImpl implements DictionaryInterface {
             stmt.setString(1, areaId);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                PassportOffice str = new PassportOffice(rs.getInt("p_office_id"),
+                PassportOffice str = new PassportOffice(
+                        rs.getInt("p_office_id"),
                         rs.getString("p_office_area_id"),
                         rs.getString("p_office_name"));
                 result.add(str);

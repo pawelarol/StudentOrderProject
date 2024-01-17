@@ -1,4 +1,10 @@
 package edu.javaCourse.studentOrder.dao;
+import edu.javaCourse.studentOrder.Exceptions.DaoException;
+import edu.javaCourse.studentOrder.domian.CountryStruct;
+import edu.javaCourse.studentOrder.domian.PassportOffice;
+import edu.javaCourse.studentOrder.domian.RegisterOffice;
+import edu.javaCourse.studentOrder.domian.Street;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import java.io.IOException;
@@ -18,26 +24,44 @@ public class DictionaryDaoImplTest {
         URL url = DictionaryDaoImpl.class.getClassLoader().getResource("student_project.sql");
         List<String> strings = Files.readAllLines(Paths.get(url.toURI()));
         String sql = strings.stream().collect(Collectors.joining());
-        try(Connection con = BuilderConnection.getConnect();
-            Statement stmt = con.createStatement()){
+        try (Connection con = BuilderConnection.getConnect();
+             Statement stmt = con.createStatement()) {
             stmt.executeUpdate(sql);
         }
     }
 
 
     @Test
-    public void test(){
-        System.out.println("TEST1");
-        System.out.println("NEW VERSION GIT");
+    public void testStreet() throws DaoException {
+        List<Street> liststr = new DictionaryDaoImpl().findStreet("a");
+        Assert.assertTrue(liststr.size() == 4);
+        System.out.println("Test street is done");
 
     }
 
     @Test
-    public void test2(){
-        System.out.println("TEST2");
+    public void testRegister() throws DaoException {
+        List<PassportOffice> po = new DictionaryDaoImpl().findPassportOffice("020010010001");
+        Assert.assertTrue(po.size() == 1);
+
+        List<RegisterOffice> ro = new DictionaryDaoImpl().findRegisterOffice("010020000000");
+        Assert.assertTrue(ro.size() == 1);
+        System.out.println("Test register is done");
     }
-   @Test
-    public void test3(){
-        System.out.println("TEST3");
+
+    @Test
+    public void testCountry() throws DaoException {
+        List<CountryStruct> cs = new DictionaryDaoImpl().findArea("");
+        Assert.assertTrue(cs.size() == 2);
+
+        List<CountryStruct> cs1 = new DictionaryDaoImpl().findArea("0200000000");
+        Assert.assertTrue(cs1.size() == 1);
+
+        List<CountryStruct> cs2 = new DictionaryDaoImpl().findArea("020010000000");
+        Assert.assertTrue(cs2.size() == 2);
+
+        List<CountryStruct> cs3 = new DictionaryDaoImpl().findArea("020010010000");
+        Assert.assertTrue(cs3.size() == 2);
+        System.out.println("Test country is done");
     }
 }
