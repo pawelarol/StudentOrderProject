@@ -15,7 +15,7 @@ public class SimpleRunner {
     private void runTests() {
         try {
             Class<?> cl1 = Class.forName("edu.javaCourse.studentOrder.dao.DictionaryDaoImplTest");
-            Class<?> cl2 = Class.forName("edu.javaCourse.studentOrder.dao.SecondTest");
+            Class<?> cl2 = Class.forName("edu.javaCourse.studentOrder.dao.StudentOrderDaoImplTest");
             List<Class<?>> listClass = new LinkedList<>();
             listClass.add(cl1);
             listClass.add(cl2);

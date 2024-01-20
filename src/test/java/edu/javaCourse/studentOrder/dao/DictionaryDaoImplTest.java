@@ -21,13 +21,7 @@ import java.util.stream.Collectors;
 public class DictionaryDaoImplTest {
     @BeforeClass
     public static void testString() throws IOException, URISyntaxException, SQLException {
-        URL url = DictionaryDaoImpl.class.getClassLoader().getResource("student_project.sql");
-        List<String> strings = Files.readAllLines(Paths.get(url.toURI()));
-        String sql = strings.stream().collect(Collectors.joining());
-        try (Connection con = BuilderConnection.getConnect();
-             Statement stmt = con.createStatement()) {
-            stmt.executeUpdate(sql);
-        }
+      DBInit.testString();
     }
 
 

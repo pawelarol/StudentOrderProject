@@ -1,5 +1,6 @@
 package edu.javaCourse.studentOrder.validators;
 
+import edu.javaCourse.studentOrder.Exceptions.DaoException;
 import edu.javaCourse.studentOrder.Senders.MailSender;
 import edu.javaCourse.studentOrder.answers.AnswerChildren;
 import edu.javaCourse.studentOrder.CityRegister.AnswerCityRegister;
@@ -9,6 +10,7 @@ import edu.javaCourse.studentOrder.checks.CheckChildren;
 import edu.javaCourse.studentOrder.checks.CheckStudents;
 import edu.javaCourse.studentOrder.checks.CheckWedding;
 import edu.javaCourse.studentOrder.CityRegister.CheckCityRegister;
+import edu.javaCourse.studentOrder.dao.StudentOrderDaoImpl;
 import edu.javaCourse.studentOrder.domian.SaveStudentOrder;
 import edu.javaCourse.studentOrder.domian.StudentOrder;
 
@@ -23,7 +25,7 @@ public class StudentOrderValidator {
     private final CheckStudents checkStudents;
 
     private final MailSender mailSender;
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DaoException {
       StudentOrderValidator studVal = new StudentOrderValidator();
       studVal.checkAll();
     }
@@ -35,7 +37,7 @@ public class StudentOrderValidator {
         checkChildren = new CheckChildren();
         mailSender = new MailSender();
     }
-    private void checkAll() {
+    private void checkAll() throws DaoException {
        List <StudentOrder> arraySo = readStudentOrder();
         for( StudentOrder so :arraySo ){
             checkOneOrder(so);
@@ -50,16 +52,8 @@ public class StudentOrderValidator {
 //      sendMail(so);
       }
 
-    public List<StudentOrder> readStudentOrder() {
-        List <StudentOrder>  studList = new LinkedList<>();
-       for(int i = 0; i<4; i++){
-        StudentOrder readList  = SaveStudentOrder.buildStudentOrder(i);
-          studList.add(readList);
-        }
-       for(StudentOrder std : studList){
-           System.out.println("ID" + std.getHusband().getPassportSerial());
-       }
-        return studList;
+    public List<StudentOrder> readStudentOrder() throws DaoException {
+       return new StudentOrderDaoImpl().getStudentOrders();
     }
 
     private void sendMail(StudentOrder studentOrder) {
