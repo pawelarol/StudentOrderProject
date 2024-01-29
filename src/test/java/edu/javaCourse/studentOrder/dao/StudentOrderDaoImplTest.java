@@ -2,7 +2,6 @@ package edu.javaCourse.studentOrder.dao;
 
 import edu.javaCourse.studentOrder.Exceptions.DaoException;
 import edu.javaCourse.studentOrder.domian.*;
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +10,8 @@ import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StudentOrderDaoImplTest {
 
@@ -24,17 +25,13 @@ public class StudentOrderDaoImplTest {
         Long id = new StudentOrderDaoImpl().saveStudentOrder(so);
     }
 
-    // понять почему если мы устанавливаем для мужа поле нулл. то наша программа не выдает ошибку
     // set expected = DaoException.class()
-    @Test
-    public void saveStudentOrderTestError(){
-        try {
-            StudentOrder so = buildStudentOrder(10);
-            so.getHusband().setFirstName(null);
-            Long id = new StudentOrderDaoImpl().saveStudentOrder(so);
-            Assert.fail("Error should be");
-       } catch(DaoException ex) {
-        }
+    @Test()
+    public void saveStudentOrderTestError() {
+        StudentOrder so = buildStudentOrder(10);
+        so.getHusband().setFirstName(null);
+        // Long id = new StudentOrderDaoImpl().saveStudentOrder(so);
+         assertThrows(DaoException.class, () -> new StudentOrderDaoImpl().saveStudentOrder(so));
     }
 
     @Test

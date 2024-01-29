@@ -9,24 +9,24 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DictionaryDaoImplTest {
+
+    private static final Logger logger = LoggerFactory.getLogger(DictionaryDaoImplTest.class);
     @BeforeClass
     public static void testString() throws IOException, URISyntaxException, SQLException {
       DBInit.testString();
     }
 
-
     @Test
     public void testStreet() throws DaoException {
+        LocalDateTime lc = LocalDateTime.now();
+        logger.info("Test logging {} ", lc);
         List<Street> liststr = new DictionaryDaoImpl().findStreet("a");
         Assert.assertTrue(liststr.size() == 4);
         System.out.println("Test street is done");

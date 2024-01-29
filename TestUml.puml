@@ -1,0 +1,13 @@
+@startuml
+autonumber
+skinparam MaxMessageSize 150
+Actor "DearUser" as u order 10
+participant "Clien\nRodimy" as c order 20
+participant "Servant \nBeautiful" as s order 30
+queue "Broker" as br order 25
+database "Basenka" as db order 27
+
+u->c: Наполнить корзину
+c-> c: show order
+
+@enduml
